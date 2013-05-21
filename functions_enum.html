@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Carousel: Carousel documentation</title>
+<title>Carousel: Class Members - Enumerations</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -46,9 +46,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -67,6 +67,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li class="current"><a href="functions.html"><span>Class&#160;Members</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li><a href="functions.html"><span>All</span></a></li>
+      <li><a href="functions_func.html"><span>Functions</span></a></li>
+      <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li class="current"><a href="functions_enum.html"><span>Enumerations</span></a></li>
+      <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
+      <li><a href="functions_prop.html"><span>Properties</span></a></li>
+    </ul>
+  </div>
 </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -82,50 +100,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div class="header">
-  <div class="headertitle">
-<div class="title">Carousel documentation </div>  </div>
-</div><!--header-->
 <div class="contents">
-<div class="textblock"><h1>Carousel</h1>
-<p>Carousel is a managed component library for desktop applications that helps to extending core functionality of the application by external or internal components. An extension (component) can provide a toolbar with new tools, menus, commands or dock widgets, listen for and respond to events, perform feature validation, and so on.</p>
-<p>There are Carousel's basic concepts: <b>Components</b>, <b>Providers</b>, <b>Installers</b>, <b>Bootloaders</b> and <b>Service Locator</b>.</p>
-<h2>Components</h2>
-<p>An <a class="el" href="classIComponent.html" title="The abstract IComponent class defines contract for the components deployed in the application...">IComponent</a> is a base unit of the Carousel, that can contain UI and/or logic features, provides or exposes some services for the other components. The instances of the <a class="el" href="classIComponent.html" title="The abstract IComponent class defines contract for the components deployed in the application...">IComponent</a> class could be registered statically in code or discovered by other ways - e.g., loaded from the specified paths at start-time or by demand.</p>
-<p>Components are integrated in the application by the <b>Providers</b>. Different providers specify different component configuring and loading time - the simplest <b><a class="el" href="classComponentProvider.html" title="Provides base methods to register components statically in code.">ComponentProvider</a></b> means <b>compile-time</b> components populating: </p>
-<div class="fragment"><pre class="fragment">    IComponentProvider *Bootloader::createComponentProvider()
-    {
-            IComponentProvider *provider = new ComponentProvider();
-            provider-&gt;registerComponent(new InteractionServiceComponent());
-            provider-&gt;registerComponent(new DisplayComponent());
-
-            return provider;
-    }</pre></div><p> <a class="el" href="classDirectoryComponentProvider.html" title="The DirectoryComponentProvider uses to load custom components from the specified library path...">DirectoryComponentProvider</a> can discover and load components on <b>run-time</b>. It uses to load custom components (which may appear as custom installed plugins) from the specified library path. For example, this directory provider will discover and load (if it is possible) all components from the **./components** directory at the <b>startup-time</b>: </p>
-<div class="fragment"><pre class="fragment">    IComponentProvider *Bootloader::createComponentProvider()
-    {
-            DirectoryComponentProvider *directoryProvider = new DirectoryComponentProvider("./components");
-
-            return directoryProvider;
-    }       </pre></div><p> You also can use <a class="el" href="classFileComponentProvider.html">FileComponentProvider</a> to load component by demand (e.g., user wants to load just-downloaded component) on <b>run-time</b>.</p>
-<p>External components can be loaded in right order (if they have a dependencies) from the defining paths or can be configured statically in the code (internal components).</p>
-<h2>Providers</h2>
-<h2>Installers</h2>
-<h2>Bootloaders</h2>
-<h2>Service Locator</h2>
-<h1>Build</h1>
-<p>Read the BUILD.txt to generate MSVC/Xcode solutions using cmake.</p>
-<h1>Supported compilers (tested ones):</h1>
-<ol>
-<li>
-msvc-10 </li>
-<li>
-msvc-11 </li>
-<li>
-mingw </li>
-<li>
-gcc-4.4.5 </li>
-</ol>
-</div></div><!-- contents -->
+&#160;<ul>
+<li>Availability
+: <a class="el" href="classIComponent.html#a72aa6d7ef251215ca666b4c0801d13ba">IComponent</a>
+</li>
+</ul>
+</div><!-- contents -->
 
 
 <hr class="footer"/><address class="footer"><small>

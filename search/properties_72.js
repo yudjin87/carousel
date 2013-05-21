@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['radiobuttonexclusive',['radioButtonExclusive',['http://qt-project.org/doc/qt-4.8/q3buttongroup.html#radioButtonExclusive-prop',1,'Q3ButtonGroup']]],
+  ['readonly',['readOnly',['http://qt-project.org/doc/qt-4.8/qfilesystemmodel.html#readOnly-prop',1,'QFileSystemModel::readOnly()'],['http://qt-project.org/doc/qt-4.8/q3databrowser.html#readOnly-prop',1,'Q3DataBrowser::readOnly()'],['http://qt-project.org/doc/qt-4.8/qtextbrowser.html#readOnly-prop',1,'QTextBrowser::readOnly()'],['http://qt-project.org/doc/qt-4.8/qfiledialog-obsolete.html#readOnly-prop',1,'QFileDialog::readOnly()'],['http://qt-project.org/doc/qt-4.8/qtextedit.html#readOnly-prop',1,'QTextEdit::readOnly()'],['http://qt-project.org/doc/qt-4.8/q3textedit.html#readOnly-prop',1,'Q3TextEdit::readOnly()'],['http://qt-project.org/doc/qt-4.8/q3table.html#readOnly-prop',1,'Q3Table::readOnly()'],['http://qt-project.org/doc/qt-4.8/qplaintextedit.html#readOnly-prop',1,'QPlainTextEdit::readOnly()'],['http://qt-project.org/doc/qt-4.8/qlineedit.html#readOnly-prop',1,'QLineEdit::readOnly()'],['http://qt-project.org/doc/qt-4.8/qdirmodel.html#readOnly-prop',1,'QDirModel::readOnly()'],['http://qt-project.org/doc/qt-4.8/qabstractspinbox.html#readOnly-prop',1,'QAbstractSpinBox::readOnly()']]],
+  ['rect',['rect',['http://qt-project.org/doc/qt-4.8/qwidget.html#rect-prop',1,'QWidget']]],
+  ['redoavailable',['redoAvailable',['http://qt-project.org/doc/qt-4.8/qlineedit.html#redoAvailable-prop',1,'QLineEdit']]],
+  ['regexp',['regExp',['http://qt-project.org/doc/qt-4.8/qregexpvalidator.html#regExp-prop',1,'QRegExpValidator']]],
+  ['registeredservicenames',['registeredServiceNames',['http://qt-project.org/doc/qt-4.8/qdbusconnectioninterface.html#registeredServiceNames-prop',1,'QDBusConnectionInterface']]],
+  ['renderhints',['renderHints',['http://qt-project.org/doc/qt-4.8/qgraphicsview.html#renderHints-prop',1,'QGraphicsView::renderHints()'],['http://qt-project.org/doc/qt-4.8/qgraphicswebview.html#renderHints-prop',1,'QGraphicsWebView::renderHints()'],['http://qt-project.org/doc/qt-4.8/qwebview.html#renderHints-prop',1,'QWebView::renderHints()']]],
+  ['requestedurl',['requestedUrl',['http://qt-project.org/doc/qt-4.8/qwebframe.html#requestedUrl-prop',1,'QWebFrame']]],
+  ['resizeanchor',['resizeAnchor',['http://qt-project.org/doc/qt-4.8/qgraphicsview.html#resizeAnchor-prop',1,'QGraphicsView']]],
+  ['resizeenabled',['resizeEnabled',['http://qt-project.org/doc/qt-4.8/q3dockwindow.html#resizeEnabled-prop',1,'Q3DockWindow']]],
+  ['resizegripsvisible',['resizeGripsVisible',['http://qt-project.org/doc/qt-4.8/qcolumnview.html#resizeGripsVisible-prop',1,'QColumnView']]],
+  ['resizemode',['resizeMode',['http://qt-project.org/doc/qt-4.8/q3listview.html#resizeMode-prop',1,'Q3ListView::resizeMode()'],['http://qt-project.org/doc/qt-4.8/q3iconview.html#resizeMode-prop',1,'Q3IconView::resizeMode()'],['http://qt-project.org/doc/qt-4.8/qlistview.html#resizeMode-prop',1,'QListView::resizeMode()'],['http://qt-project.org/doc/qt-4.8/qdeclarativeview.html#resizeMode-prop',1,'QDeclarativeView::resizeMode()']]],
+  ['resizepolicy',['resizePolicy',['http://qt-project.org/doc/qt-4.8/q3scrollview.html#resizePolicy-prop',1,'Q3ScrollView']]],
+  ['resizestocontents',['resizesToContents',['http://qt-project.org/doc/qt-4.8/qgraphicswebview.html#resizesToContents-prop',1,'QGraphicsWebView']]],
+  ['resolution',['resolution',['http://qt-project.org/doc/qt-4.8/qsvggenerator.html#resolution-prop',1,'QSvgGenerator']]],
+  ['resolvesymlinks',['resolveSymlinks',['http://qt-project.org/doc/qt-4.8/qfilesystemmodel.html#resolveSymlinks-prop',1,'QFileSystemModel::resolveSymlinks()'],['http://qt-project.org/doc/qt-4.8/qfiledialog-obsolete.html#resolveSymlinks-prop',1,'QFileDialog::resolveSymlinks()'],['http://qt-project.org/doc/qt-4.8/qdirmodel.html#resolveSymlinks-prop',1,'QDirModel::resolveSymlinks()']]],
+  ['rightjustification',['rightJustification',['http://qt-project.org/doc/qt-4.8/q3mainwindow.html#rightJustification-prop',1,'Q3MainWindow']]],
+  ['rootisdecorated',['rootIsDecorated',['http://qt-project.org/doc/qt-4.8/qtreeview.html#rootIsDecorated-prop',1,'QTreeView::rootIsDecorated()'],['http://qt-project.org/doc/qt-4.8/q3listview.html#rootIsDecorated-prop',1,'Q3ListView::rootIsDecorated()']]],
+  ['rotation',['rotation',['http://qt-project.org/doc/qt-4.8/qgraphicsobject.html#rotation-prop',1,'QGraphicsObject']]],
+  ['rotationangle',['rotationAngle',['http://qt-project.org/doc/qt-4.8/qpinchgesture.html#rotationAngle-prop',1,'QPinchGesture']]],
+  ['rowcount',['rowCount',['http://qt-project.org/doc/qt-4.8/qtablewidget.html#rowCount-prop',1,'QTableWidget']]],
+  ['rowmode',['rowMode',['http://qt-project.org/doc/qt-4.8/q3listbox.html#rowMode-prop',1,'Q3ListBox']]],
+  ['rowmovingenabled',['rowMovingEnabled',['http://qt-project.org/doc/qt-4.8/q3table.html#rowMovingEnabled-prop',1,'Q3Table']]],
+  ['rowwrappolicy',['rowWrapPolicy',['http://qt-project.org/doc/qt-4.8/qformlayout.html#rowWrapPolicy-prop',1,'QFormLayout']]],
+  ['rubberbandselectionmode',['rubberBandSelectionMode',['http://qt-project.org/doc/qt-4.8/qgraphicsview.html#rubberBandSelectionMode-prop',1,'QGraphicsView']]]
+];
