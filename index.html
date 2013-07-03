@@ -77,161 +77,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Carousel documentation </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1>Carousel</h1>
+<div class="textblock"><h1><a class="anchor" id="Carousel"></a>
+Carousel</h1>
 <h2>Note, that it is still in development!</h2>
 <p>Source code: <a href="https://github.com/yudjin87/carousel">https://github.com/yudjin87/carousel</a></p>
+<p><a class="el" href="CompositeAppOverview.html">Composite application overview</a></p>
 <p>Carousel is a managed component library for desktop applications that helps to extending core functionality of the application by external or internal components. An extension (component) can provide a toolbar with new tools, menus, commands or dock widgets, listen for and respond to events, perform feature validation, and so on.</p>
-<p>There are Carousel's basic concepts: <b>Components</b>, <b>Providers</b>, <b>Installers</b>, <b>Bootloaders</b> and <b>Service Locator</b>.</p>
-<p>What is a composite application?</p>
-<div class="image">
-<img src="CompositeAppOverview.png" alt="CompositeAppOverview.png"/>
-</div>
-<h2>Content</h2>
-<ol>
-<li>
-Partition of an application into components; </li>
-<li>
-Component management: registering, discovering, loading and starting components; </li>
-<li>
-Communication between the components; </li>
-<li>
-Managing dependencies between the components (object factories); </li>
-<li>
-Life-time phases (how control some classes usage); </li>
-<li>
-Presentation and model responsibilities and organization; </li>
-<li>
-Unit testing; </li>
-<li>
-<p class="startli">Examples; </p>
-<ol>
-<li>
-</li>
-</ol>
-<h2>Partition of an application into components</h2>
-<p></p>
-<p>When application is developed in a composite manner, it is divided into separate client components that can be individually developed, tested, and deployed. Each component should encapsulate a set of related concerns and have a distinct set of responsibilities. By features:</p>
-<div class="image">
-<img src="ByFeature.png" alt="ByFeature.png"/>
-</div>
-<p>By service layers (shared, business logic, presentation layer):</p>
-<div class="image">
-<img src="ByLayer.png" alt="ByLayer.png"/>
-</div>
-<p>A larger application may have components organized with combining approach – by features and by layers:</p>
-<div class="image">
-<img src="ByFeatureAndLayer.png" alt="ByFeatureAndLayer.png"/>
-</div>
-<h2>Component management</h2>
-<p></p>
-<p>Different kinds of component providers are used for component registering (statically in code, at start time and at run time, by demand). They are loaded through proxy component, using <a class="elRef" doxygen="qt.tag:http://qt-project.org/doc/qt-4.8//" href="http://qt-project.org/doc/qt-4.8/qlibrary.html">QLibrary</a> loader. Then after loading, their starting order is resolved so, that parents start before their children, and components are started by the <a class="el" href="classIComponentManager.html" title="The IComponentManager holds information about the components that can be used by the application...">IComponentManager</a>. During the start components register services and object factories that are consumed by other components, undoable commands and build interactive structure (menu or/and tool bar items, docking widgets, etc.).</p>
-<h2>Communication between the components</h2>
-<p>Composite application, based on many loosely coupled components, should provide some way to communicate between the components. They need to interact to contribute model content and receive notifications based on user actions. There are few ways of providing such communication – shared services, publisher/subscriber notifications and commanding.</p>
-<p>Main method of communication between the components is shared services, obtained from the Service Locator. During startup components register their services on the central registry, called <a class="el" href="classIServiceLocator.html" title="The abstract IServiceLocator class provides central registry of the types and instances.">IServiceLocator</a>. It is passed as one of the arguments to the startup method. Although you can add a concrete class, it is recommended that services are registered and retrieved from the <em>locator</em> by the abstract pure interfaces. This allows client code to use services without reference to the concrete implementation. In case where interfaces for shared services are in the one single library, it even is not required a static reference (.lib on Windows; on UNIX-like system it does not required static reference as long as components consume only pure interfaces) to the component library.</p>
-<p>Another way to communicate between loosely coupled components is a mechanism based on the notifications. It allows publishers and subscribers to communicate through notifications (for example, using already implemented message delivering – <a class="elRef" doxygen="qt.tag:http://qt-project.org/doc/qt-4.8//" href="http://qt-project.org/doc/qt-4.8/qt.html">Qt</a> Events) and still do not have a direct reference to each other. But, although it could end with a big mess when one notification generated another and so on, it still could be useful to communicate between business logic, like presenters and controllers.</p>
-<p>Use commands, based on business logic (like <a class="el" href="classInstallComponentsCommand.html">InstallComponentsCommand</a> or <a class="el" href="classEnableComponentCommand.html">EnableComponentCommand</a>), in response of the user actions, such as clicking on a command trigger (for example, menu item or dialog/tool bar button). You could instantiate required command using service locator in response on the specific slot (or other user input handler), setup it according to the user inputs and execute it through undo stack. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>example. </dd></dl>
-<h2>Managing dependencies between the components (object factories)</h2>
-<p>Shared services work good when components just want to communicate each other. But only communication is not enough, components have to instantiate objects from other components. Object factories go here to avoid tight coupling. Using factories you can map interface type to the concrete type or, even, register a factory method for the specific interface type. Then, when we have such factories it is easier to instantiate some object with large amount of nested dependencies. It allows us to create object without any knowing of it dependencies and create ready-to-user object.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>code for register a factory method for the specific interface type.</dd></dl>
-<p>Also, all types could be remapped by other components (for example, dialogs could be easily redesigned and remapped), and old code should not be changed. It also allows creating and using objects from the scripts. For example, you can create <a class="el" href="classInstallComponentsCommand.html">InstallComponentsCommand</a> command inside the script, set up it properly and push it to the undo stack.</p>
-<h2>Life-time phases (how control some classes usage)</h2>
-<p>Architecture should also declare a set of limitations: how, when and where can we use some of the described above mechanisms. Service locator and objects factory could be dangerous in using, when you decide that it is very convenient to have a reference to the locator in every object. Main purpose of the locator is to fill-in dependencies between components during their starting time. So I’ve introduced the concept of life-time phases.</p>
-<div class="image">
-<img src="LifeTimePhases.png" alt="LifeTimePhases.png"/>
-</div>
-<p>There are two main phases: configuration and execution. An execution phase is an ordinal application state, in which you response on the user interaction. It is almost does not matter whether that application is composite or not. So on the execution phase I try to limit service locator using, because main controllers, handlers and other classes are created, configured, dependencies are injected, UI and domain model trees are built and so on.</p>
-<p>But during the configuration phase service locator is actively used by the components:</p>
-<ol>
-<li>
-Services, object factories and type mapping are consumed and registered </li>
-<li>
-Dependencies, new or obtained from the locator, are injected to roots of component model and to the new views and GUI interaction elements (menu items, tool bars, dialogs). They are passed to the constructors to create only ready-to-use objects </li>
-<li>
-New GUI is registered for permanent (views) or temporary usage (dialogs). Dialogs and views are mapped to the specified model types (which they are intend to show) </li>
-</ol>
-<p>Because services are registered at the component start up time and unregistered at its shutdown time, their lifetime is at least not shorter than component other objects lifetime. Also because neither component class itself nor GUI classes are not covered by the unit testing, the limitation is using service locator (not services!) only at the configuration phase on the infrastructure level, and on the execution phase on the presentation layer: operations/dialogs/presenters/views (GUI), components and so on.</p>
-<p>All other domain objects should not have a dependency from the service locator, but they could have dependencies from the other services. And just because you already know what exactly other objects need, you should not get them whole locator, but just dependencies.</p>
-<h2>Registration phase</h2>
-<p></p>
-<p>A sub-class of Bootloader starts registration and configuration phases. It creates and registers service locator itself and widely spread services, like logger façade, component management and, optionally, main window for the GUI applications. It is implemented as a sequence of pairs “create&lt;&gt;() - configure&lt;&gt;()” methods, and each of them could be overridden. For example, to use your own logger system it is just needed to override createLoggerEngine() method.</p>
-<p>To start new application you also should to override createComponentProvider() or configureComponentProvider() method to determine way in which your application will be populated by the components. For example, here is a component provider which will load components from the "./components" directory at the start-time and which also has four built-in components, configured statically at the compile-time:</p>
-<div class="fragment"><div class="line"><a class="code" href="classIComponentProvider.html" title="This is the expected provider definition for the boot loading sequence.">IComponentProvider</a> *MyBootloader:: createComponentProvider ()</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="classCompositeComponentProvider.html" title="The CompositeComponentProvider class provides access to members that control a collection of provider...">CompositeComponentProvider</a> *provider = <span class="keyword">new</span> <a class="code" href="classCompositeComponentProvider.html" title="The CompositeComponentProvider class provides access to members that control a collection of provider...">CompositeComponentProvider</a>();</div>
-<div class="line">    provider-&gt;<a class="code" href="classCompositeComponentProvider.html#a583f8ca7c59061c98cfa9a2d60c21ac5">addProvider</a>(<span class="keyword">new</span> <a class="code" href="classDirectoryComponentProvider.html" title="The DirectoryComponentProvider uses to load custom components from the specified library path...">DirectoryComponentProvider</a>(<span class="stringliteral">&quot;./components&quot;</span>));</div>
-<div class="line">    provider-&gt;<a class="code" href="classCompositeComponentProvider.html#afbca8072202ea83cd87717aa0ea6daef">registerComponent</a>(<span class="keyword">new</span> <a class="code" href="classInteractionServiceComponent.html" title="This class represents a component, that creates and registers interactive services in the service loc...">InteractionServiceComponent</a>());</div>
-<div class="line">    provider-&gt;<a class="code" href="classCompositeComponentProvider.html#afbca8072202ea83cd87717aa0ea6daef">registerComponent</a>(<span class="keyword">new</span> <a class="code" href="classComponentSystemUIComponent.html">ComponentSystemUIComponent</a>());</div>
-<div class="line">    provider-&gt;<a class="code" href="classCompositeComponentProvider.html#afbca8072202ea83cd87717aa0ea6daef">registerComponent</a>(<span class="keyword">new</span> <a class="code" href="classUndoComponent.html" title="This class represents a component, that provides undo facilities.">UndoComponent</a>());</div>
-<div class="line">}</div>
-</div><!-- fragment --><h2>Configuration phase</h2>
-<p>After registration all basic shared services and components are ready to start. They are started on the configuration phase. Here is a simple example of configuration phase:</p>
-<ol>
-<li>
-The Component manager begins the components startup process, and loads and initializes the Interactivity component; </li>
-<li>
-In the startup of the Interactivity component, it registers the <a class="el" href="classIDialogService.html" title="Defines methods for showing the dialogs.">IDialogService</a> with the locator; </li>
-<li>
-The Component manager then starts the CS management UI component (the order of component starting is based on the component dependencies); </li>
-<li>
-The CS management UI component registers factory for the Show components <a class="el" href="classOperation.html" title="Inherit this abstract class to create a operations provides user to interact with application...">Operation</a> with <a class="el" href="classIDialogService.html" title="Defines methods for showing the dialogs.">IDialogService</a> constructor injection, which was resolving through the locator. </li>
-</ol>
-<div class="image">
-<img src="ConfigurationPhase.png" alt="ConfigurationPhase.png"/>
-</div>
-<p>Then you can use Show components <a class="el" href="classOperation.html" title="Inherit this abstract class to create a operations provides user to interact with application...">Operation</a> right from scripting or as a response on the user interaction (as were said later, presentation layer could has a dependency from the service locator to use registered factories). Moreover, someone could re-register Show components <a class="el" href="classOperation.html" title="Inherit this abstract class to create a operations provides user to interact with application...">Operation</a> to show new dialog.</p>
-<h2>Presentation and model responsibilities and organization </h2>
-<p>Every component could extend UI with widgets, dialogs and operations (<a class="elRef" doxygen="qt.tag:http://qt-project.org/doc/qt-4.8//" href="http://qt-project.org/doc/qt-4.8/qaction.html">QAction</a> like – menu items, toolbar buttons), so one common approach is needed to control all that stuff.</p>
-<p>Dialogs creating. Dialog service is responsible for modal dialog showing: it can create and show dialog for registered Model type. The specified model will be passed to the dialog, so client code just has to instantiate Model object, without any knowing about concrete type about dialog widget:</p>
-<div class="fragment"><div class="line"><span class="keywordtype">void</span> ShowComponentsOperation::execute()</div>
-<div class="line">{</div>
-<div class="line">    <a class="code" href="classIDialogService.html" title="Defines methods for showing the dialogs.">IDialogService</a> *dialogService = m_serviceLocator-&gt;locate&lt;<a class="code" href="classIDialogService.html" title="Defines methods for showing the dialogs.">IDialogService</a>&gt;();</div>
-<div class="line">    <a class="code" href="classComponentDefinitionsModel.html">ComponentDefinitionsModel</a> *model = m_serviceLocator-&gt;buildInstance&lt;<a class="code" href="classComponentDefinitionsModel.html">ComponentDefinitionsModel</a>&gt;();</div>
-<div class="line">    dialogService-&gt;<a class="code" href="classIDialogService.html#a59914bbaf9b30f0035a1cb19ee7b14b7">showDialog</a>(model);</div>
-<div class="line">    <span class="keyword">delete</span> model;</div>
-<div class="line">}</div>
-</div><!-- fragment --><p>Data rendering (classic MVC): <a class="elRef" doxygen="qt.tag:http://qt-project.org/doc/qt-4.8//" href="http://qt-project.org/doc/qt-4.8/qt.html">Qt</a> View-Model, where each <a class="elRef" doxygen="qt.tag:http://qt-project.org/doc/qt-4.8//" href="http://qt-project.org/doc/qt-4.8/qt.html">Qt</a> Model has dependency on business model (Data). So, Model can render Data objects, subscribes to Data changing. To change Data Commands should be used, because commands could be undo-able, could contains complicated logic and could be used from the other places. Also they could be created and used from the different places (e.g. from scripting). Model creates specified command with all dependencies using factory (because model is in a presentation layer), sets it up and pushes to the <a class="elRef" doxygen="qt.tag:http://qt-project.org/doc/qt-4.8//" href="http://qt-project.org/doc/qt-4.8/qundostack.html">QUndoStack</a>. Note, that such approach is used only for the different kinds of dialogs and other data widgets, but not for drawing (2D/3D) and other stuff.</p>
-<p>Components could provide new dock widgets for rendering new information, that can be registered on the <a class="el" href="classIDockWidgetCatalog.html" title="The IDockWidgetCatalog interface provide methods to work with dockable widgets in application...">IDockWidgetCatalog</a>; New dialogs can be mapped on Model types using <a class="el" href="classIDialogService.html" title="Defines methods for showing the dialogs.">IDialogService</a>;</p>
-<p>Interaction approach (menu items and tool handlers): </p>
-<ol>
-<li>
-There are two <a class="elRef" doxygen="qt.tag:http://qt-project.org/doc/qt-4.8//" href="http://qt-project.org/doc/qt-4.8/qaction.html">QAction</a> sub-classes: <a class="el" href="classOperation.html" title="Inherit this abstract class to create a operations provides user to interact with application...">Operation</a> and Tool, which are mapped to the use cases/use case steps; </li>
-<li>
-<em>Buttons</em> and <em>menu</em> <em>items</em> are the simplest types of operations. Buttons generally appear as icons on toolbars and menu items appear in menus. A simple action is performed when the button or menu item is clicked; </li>
-<li>
-<em>Tools</em> are similar to operations but they also require interaction with the application's display. The Pan operation in the demo project is a good example of a tool - you click and drag a map to show another map content; </li>
-<li>
-<em>Only</em> one tool could active at the time, and all user interactions with working widgets will be dispatched to that tool using <a class="el" href="classInputInterceptor.html" title="This class provides methods to application widget events&#39; manipulating and transfering them to the ac...">InputInterceptor</a> class, so to create a new Tool you just should override default empty methods like <a class="el" href="classIInputReceiver.html#ae03079ee3076fe3c9124a1db4bae2923">ITool::onMouseDown()</a>, <a class="el" href="classIInputReceiver.html#a4f67a9fa4daaa24c070ab9e742577b71">ITool::onMouseMove()</a>, <a class="el" href="classIInputReceiver.html#a61afdec36741bb909395d686ed6e3318">ITool::onDoubleClick()</a>, etc; </li>
-<li>
-As was said later, operations could use undoable commands to modify data; </li>
-<li>
-New menu items and toolbars with tools and operations can be registered and added to the GUI using <a class="el" href="classIMenuCatalog.html" title="The IMenuCatalog interface provides access to members that work on the collection of application menu...">IMenuCatalog</a>, <a class="el" href="classIOperationCatalog.html" title="Use IOperationCatalog class to adding and fetching application operations.">IOperationCatalog</a> and <a class="el" href="classIToolBarCatalog.html" title="The IToolBarCatalog interface exposes members that work on the collection of application toolbars...">IToolBarCatalog</a>; </li>
-</ol>
-<h2>Unit testing</h2>
-<ol>
-<li>
-All classes take dependencies through constructors, so you can mock them; </li>
-<li>
-Classes, that have some default behavior, but it might be changed, have setters for the delegates, who encapsulates that behavior, so you cam mock them; </li>
-<li>
-All utility objects are created inside the class using virtual factory method, which returns a default utility instance, but you also can override it and return mock utility; </li>
-<li>
-<em>Only</em> one tool could active at the time, and all user interactions with working widgets will be dispatched to that tool using <a class="el" href="classInputInterceptor.html" title="This class provides methods to application widget events&#39; manipulating and transfering them to the ac...">InputInterceptor</a> class, so to create a new Tool you just should override default empty methods like <a class="el" href="classIInputReceiver.html#ae03079ee3076fe3c9124a1db4bae2923">ITool::onMouseDown()</a>, <a class="el" href="classIInputReceiver.html#a4f67a9fa4daaa24c070ab9e742577b71">ITool::onMouseMove()</a>, <a class="el" href="classIInputReceiver.html#a61afdec36741bb909395d686ed6e3318">ITool::onDoubleClick()</a>, etc; </li>
-<li>
-As was said later, operations could use undoable commands to modify data; </li>
-</ol>
-<h2>Examples</h2>
-<ol>
-<li>
-New application: <a href="https://github.com/yudjin87/carousel/blob/master/demos/painter/app/main.cpp">demos/painter/app/main.cpp</a>; </li>
-<li>
-New dialog: <a href="https://github.com/yudjin87/carousel/blob/master/src/components/componentsystemui/ComponentSystemUIComponent.cpp">src/components/componentsystemui/ComponentSystemUIComponent.cpp</a>; </li>
-<li>
-New widget: <a href="https://github.com/yudjin87/carousel/blob/master/demos/painter/cartoUI/CartoUIInteractiveExtension.cpp">demos/painter/cartoUI/CartoUIInteractiveExtension.cpp</a>; </li>
-<li>
-New tools and operations: <a href="https://github.com/yudjin87/carousel/blob/master/demos/painter/navigationOperations/NavigationOperationsInteractiveExtension.cpp">demos/painter/navigationOperations/NavigationOperationsInteractiveExtension.cpp</a>; </li>
-</ol>
-<h2>Components</h2>
+<p>There are Carousel's basic concepts: <a class="el" href="index.html#Components">Components</a>, <b>Providers</b>, <b>Installers</b>, <a class="el" href="index.html#Bootloaders">Bootloaders</a> and <b>Service Locator</b>.</p>
+<h2><a class="anchor" id="Components"></a>
+Components</h2>
 <p>An <a class="el" href="classIComponent.html" title="The abstract IComponent class defines contract for the components deployed in the application...">IComponent</a> is a base unit of the Carousel, that can contain UI and/or logic features, provides or exposes some services for the other components. The instances of the <a class="el" href="classIComponent.html" title="The abstract IComponent class defines contract for the components deployed in the application...">IComponent</a> class could be registered statically in code or discovered by other ways - e.g., loaded from the specified paths at start-time or by demand.</p>
 <p>Components are integrated in the application by the <b>Providers</b>. Different providers specify different component configuring and loading time - the simplest <b><a class="el" href="classComponentProvider.html" title="Provides base methods to register components statically in code.">ComponentProvider</a></b> means <b>compile-time</b> components populating:</p>
 <div class="fragment"><div class="line"><a class="code" href="classIComponentProvider.html" title="This is the expected provider definition for the boot loading sequence.">IComponentProvider</a> *Bootloader::createComponentProvider()</div>
@@ -251,13 +105,13 @@ New tools and operations: <a href="https://github.com/yudjin87/carousel/blob/mas
 <div class="line">}</div>
 </div><!-- fragment --><p>You also can use <a class="el" href="classFileComponentProvider.html">FileComponentProvider</a> to load component by demand (e.g., user wants to load just-downloaded component) on <b>run-time</b>.</p>
 <p>External components can be loaded in right order (if they have a dependencies) from the defining paths or can be configured statically in the code (internal components).</p>
-<h2>Providers</h2>
-<p></p>
-<h2>Installers</h2>
-<p></p>
-<h2>Bootloaders</h2>
-<p>The bootloader instance is one of the first instances who starts Carousel mechanism. Mainly, is starts a <b>registration phase</b>.</p>
-<p>It creates and registers an <a class="el" href="classIServiceLocator.html" title="The abstract IServiceLocator class provides central registry of the types and instances.">IServiceLocator</a> itself and common services, like <a class="el" href="classLoggerFacade.html" title="The LoggerFacade class is just a facade for the specified application logging engine.">LoggerFacade</a>, <a class="el" href="classIComponentManager.html" title="The IComponentManager holds information about the components that can be used by the application...">IComponentManager</a> and, optionally, <a class="elRef" doxygen="qt.tag:http://qt-project.org/doc/qt-4.8//" href="http://qt-project.org/doc/qt-4.8/qmainwindow.html">QMainWindow</a> for the GUI applications. <a class="elRef" doxygen="qt.tag:http://qt-project.org/doc/qt-4.8//" href="http://qt-project.org/doc/qt-4.8/qmainwindow.html">QMainWindow</a> is just a shell or frame for the application, it is absolutely empty, but then new components could populate it with menus, toolbars, dock widgets and the central widget.</p>
+<h2><a class="anchor" id="Providers"></a>
+Providers</h2>
+<h2><a class="anchor" id="Installers"></a>
+Installers</h2>
+<h2><a class="anchor" id="Bootloaders"></a>
+Bootloaders</h2>
+<p>The bootloader instance is one of the first instances who starts Carousel mechanism. Mainly, is starts a <a class="el" href="CompositeAppOverview.html#RegistrationPhase">registration phase.</a> It creates and registers an <a class="el" href="classIServiceLocator.html" title="The abstract IServiceLocator class provides central registry of the types and instances.">IServiceLocator</a> itself and common services, like <a class="el" href="classLoggerFacade.html" title="The LoggerFacade class is just a facade for the specified application logging engine.">LoggerFacade</a>, <a class="el" href="classIComponentManager.html" title="The IComponentManager holds information about the components that can be used by the application...">IComponentManager</a> and, optionally, <a class="elRef" doxygen="qt.tag:http://qt-project.org/doc/qt-4.8//" href="http://qt-project.org/doc/qt-4.8/qmainwindow.html">QMainWindow</a> for the GUI applications. <a class="elRef" doxygen="qt.tag:http://qt-project.org/doc/qt-4.8//" href="http://qt-project.org/doc/qt-4.8/qmainwindow.html">QMainWindow</a> is just a shell or frame for the application, it is absolutely empty, but then new components could populate it with menus, toolbars, dock widgets and the central widget.</p>
 <p>Usually an <a class="el" href="classIBootloader.html" title="The abstract IBootloader class provides a basic bootstrapping sequence and hooks that specific implem...">IBootloader</a> is implemented (in <a class="el" href="classBootloaderBase.html" title="The abstract BootloaderBase class provides a basic bootstrapping sequence and hooks that specific imp...">BootloaderBase</a> or in more specific <a class="el" href="classCarouselBootloader.html" title="It is a base class that provides a basic booting sequence that registers most of the carousel library...">CarouselBootloader</a> class) as a sequence of pairs <b>create&lt;smth&gt;() - configure&lt;smth&gt;()</b> methods, and each of them could be overridden to replace default instantiation or default configuration. For example, to use your own logger system it is just needed to override <a class="el" href="classBootloaderBase.html#acf332bef9d0c471c222118f6aaddbe43">BootloaderBase::createLoggerEngine()</a> method.</p>
 <p>After bootloading process the configured <a class="el" href="classIServiceLocator.html" title="The abstract IServiceLocator class provides central registry of the types and instances.">IServiceLocator</a> is available through serviceLocator() method. Later it will be injected to the all components and other elements during <b>configuration phase</b>, when they will start or initialize. It is needed to register/locate to common services and your components' services.</p>
 <p>To start new application you also should to override <a class="el" href="classBootloaderBase.html#a6287d3363c99c2eee90f9d5e1a5b1b83">BootloaderBase::createComponentProvider()</a> or <a class="el" href="classBootloaderBase.html#a5258503679f853c8829b31aa6cdd1185">BootloaderBase::configureComponentProvider()</a> method to determine way in which your application will be populated by the components. For example, here is a component <b>provider</b> which will load components from the **"./components"** directory at the <b>start-time</b> and which also has four built-in components, configured statically at the <b>compile-time</b>:</p>
@@ -281,8 +135,8 @@ New tools and operations: <a href="https://github.com/yudjin87/carousel/blob/mas
 <div class="line">    MyBootloader bootloader;</div>
 <div class="line">    <span class="keywordflow">return</span> application.runApplicationLoop(bootloader);</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2>Service Locator</h2>
-<p></p>
+</div><!-- fragment --><h2><a class="anchor" id="ServiceLocator"></a>
+Service Locator</h2>
 <h1>Build</h1>
 <p>Read the BUILD.txt to generate MSVS/Xcode solutions using cmake.</p>
 <h1>Supported compilers (tested ones):</h1>
@@ -300,12 +154,10 @@ gcc-4.7.2 (fresh meat from Debian 7) </li>
 <li>
 Clang-4.2 (MacOS 10.7) </li>
 </ol>
-</li>
-</ol>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 4 2013 15:03:31 for Carousel by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 4 2013 17:57:36 for Carousel by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
