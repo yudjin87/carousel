@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['action',['action',['../structChanges.html#a4777c8fce0fe4f497ff5ff6adb42d237',1,'Changes']]],
+  ['affecteditems',['affectedItems',['../structChanges.html#a6109f401cffa0b3be340d1d29483e938',1,'Changes']]],
   ['alignment',['Alignment',['http://qt-project.org/doc/qt-4.8/qt.html#Alignment-typedef',1,'Qt']]],
   ['appendfunction',['AppendFunction',['http://qt-project.org/doc/qt-4.8/qdeclarativelistproperty.html#AppendFunction-typedef',1,'QDeclarativeListProperty']]],
   ['areaoptions',['AreaOptions',['http://qt-project.org/doc/qt-4.8/qmdiarea.html#AreaOptions-typedef',1,'QMdiArea']]],

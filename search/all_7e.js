@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['_7ecarouselbootloader',['~CarouselBootloader',['../classCarouselBootloader.html#a3ac050b134d982d7150e2a75ea1b9786',1,'CarouselBootloader']]],
   ['_7ecomponentloader',['~ComponentLoader',['../classComponentLoader.html#a1c278e3ae6e5d63aa90146d72affc39f',1,'ComponentLoader']]],
   ['_7econverterstate',['~ConverterState',['http://qt-project.org/doc/qt-4.8/qtextcodec-converterstate.html#dtor.ConverterState',1,'QTextCodec::ConverterState']]],
   ['_7eeffectparameter',['~EffectParameter',['http://qt-project.org/doc/qt-4.8/phonon-effectparameter.html#dtor.EffectParameter',1,'Phonon::EffectParameter']]],

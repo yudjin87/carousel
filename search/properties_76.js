@@ -3,6 +3,7 @@ var searchData=
   ['value',['value',['http://qt-project.org/doc/qt-4.8/qlcdnumber.html#value-prop',1,'QLCDNumber::value()'],['http://qt-project.org/doc/qt-4.8/qspinbox.html#value-prop',1,'QSpinBox::value()'],['http://qt-project.org/doc/qt-4.8/qdoublespinbox.html#value-prop',1,'QDoubleSpinBox::value()'],['http://qt-project.org/doc/qt-4.8/qprogressbar.html#value-prop',1,'QProgressBar::value()'],['http://qt-project.org/doc/qt-4.8/qabstractslider.html#value-prop',1,'QAbstractSlider::value()'],['http://qt-project.org/doc/qt-4.8/qprogressdialog.html#value-prop',1,'QProgressDialog::value()']]],
   ['variableheight',['variableHeight',['http://qt-project.org/doc/qt-4.8/q3listbox.html#variableHeight-prop',1,'Q3ListBox']]],
   ['variablewidth',['variableWidth',['http://qt-project.org/doc/qt-4.8/q3listbox.html#variableWidth-prop',1,'Q3ListBox']]],
+  ['version',['version',['../classParentDefinition.html#ac306571bbfcdab27cd7a10c183dbf0d3',1,'ParentDefinition']]],
   ['verticaldirection',['verticalDirection',['http://qt-project.org/doc/qt-4.8/qswipegesture.html#verticalDirection-prop',1,'QSwipeGesture']]],
   ['verticalheaderformat',['verticalHeaderFormat',['http://qt-project.org/doc/qt-4.8/qcalendarwidget.html#verticalHeaderFormat-prop',1,'QCalendarWidget']]],
   ['verticallystretchable',['verticallyStretchable',['http://qt-project.org/doc/qt-4.8/q3dockwindow.html#verticallyStretchable-prop',1,'Q3DockWindow']]],

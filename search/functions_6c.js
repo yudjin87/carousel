@@ -171,6 +171,7 @@ var searchData=
   ['lockforwrite',['lockForWrite',['http://qt-project.org/doc/qt-4.8/qreadwritelock.html#lockForWrite',1,'QReadWriteLock']]],
   ['log',['log',['http://qt-project.org/doc/qt-4.8/qglshader.html#log',1,'QGLShader::log()'],['http://qt-project.org/doc/qt-4.8/qglshaderprogram.html#log',1,'QGLShaderProgram::log()']]],
   ['loggerengine',['loggerEngine',['../classLoggerFacade.html#a5d7cd2e2e068d0658d4dfe29985a48d6',1,'LoggerFacade']]],
+  ['loggerfacade',['LoggerFacade',['../classLoggerFacade.html#a7221a9cc55cd974934af8000237aae7e',1,'LoggerFacade::LoggerFacade(const QString &amp;name)'],['../classLoggerFacade.html#ad4b7b80b4f6e1c33be083346abab04c9',1,'LoggerFacade::LoggerFacade(LoggerFacade *engine)']]],
   ['logicaldpix',['logicalDpiX',['http://qt-project.org/doc/qt-4.8/qpaintdevice.html#logicalDpiX',1,'QPaintDevice::logicalDpiX()'],['http://qt-project.org/doc/qt-4.8/q3paintdevicemetrics.html#logicalDpiX',1,'Q3PaintDeviceMetrics::logicalDpiX()']]],
   ['logicaldpiy',['logicalDpiY',['http://qt-project.org/doc/qt-4.8/qpaintdevice.html#logicalDpiY',1,'QPaintDevice::logicalDpiY()'],['http://qt-project.org/doc/qt-4.8/q3paintdevicemetrics.html#logicalDpiY',1,'Q3PaintDeviceMetrics::logicalDpiY()']]],
   ['logicalfontsize',['logicalFontSize',['http://qt-project.org/doc/qt-4.8/q3stylesheetitem.html#logicalFontSize',1,'Q3StyleSheetItem']]],

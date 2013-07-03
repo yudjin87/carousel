@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name',['name',['http://qt-project.org/doc/qt-4.8/phonon-audiooutput.html#name-prop',1,'Phonon::AudioOutput']]],
+  ['name',['name',['http://qt-project.org/doc/qt-4.8/phonon-audiooutput.html#name-prop',1,'Phonon::AudioOutput::name()'],['../classParentDefinition.html#a1c9d905235160a6a10d494c5b8240986',1,'ParentDefinition::name()']]],
   ['namefilterdetailsvisible',['nameFilterDetailsVisible',['http://qt-project.org/doc/qt-4.8/qfiledialog-obsolete.html#nameFilterDetailsVisible-prop',1,'QFileDialog']]],
   ['namefilterdisables',['nameFilterDisables',['http://qt-project.org/doc/qt-4.8/qfilesystemmodel.html#nameFilterDisables-prop',1,'QFileSystemModel']]],
   ['namespaceprocessing',['namespaceProcessing',['http://qt-project.org/doc/qt-4.8/qxmlstreamreader.html#namespaceProcessing-prop',1,'QXmlStreamReader']]],

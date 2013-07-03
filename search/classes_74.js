@@ -6,6 +6,6 @@ var searchData=
   ['toolbase',['ToolBase',['../classToolBase.html',1,'']]],
   ['touchpoint',['TouchPoint',['http://qt-project.org/doc/qt-4.8/qtouchevent-touchpoint.html',1,'QTouchEvent']]],
   ['typeobjectsmap',['TypeObjectsMap',['../classTypeObjectsMap.html',1,'']]],
-  ['typeobjectsmap_3c_20factorymethod_20_3e',['TypeObjectsMap< factoryMethod >',['../classTypeObjectsMap.html',1,'']]],
-  ['typeobjectsmap_3c_20void_20_2a_20_3e',['TypeObjectsMap< void * >',['../classTypeObjectsMap.html',1,'']]]
+  ['typeobjectsmap_3c_20factorymethod_20_3e',['TypeObjectsMap&lt; factoryMethod &gt;',['../classTypeObjectsMap.html',1,'']]],
+  ['typeobjectsmap_3c_20void_20_2a_20_3e',['TypeObjectsMap&lt; void * &gt;',['../classTypeObjectsMap.html',1,'']]]
 ];
