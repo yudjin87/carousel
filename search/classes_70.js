@@ -6,5 +6,8 @@ var searchData=
   ['path',['Path',['http://qt-project.org/doc/qt-4.8/phonon-path.html',1,'Phonon']]],
   ['pixmapfragment',['PixmapFragment',['http://qt-project.org/doc/qt-4.8/qpainter-pixmapfragment.html',1,'QPainter']]],
   ['plugin',['Plugin',['http://qt-project.org/doc/qt-4.8/qwebpluginfactory-plugin.html',1,'QWebPluginFactory']]],
+  ['pointclass',['PointClass',['../classPointClass.html',1,'']]],
+  ['pointfprototype',['PointFPrototype',['../classPointFPrototype.html',1,'']]],
+  ['pointprototype',['PointPrototype',['../classPointPrototype.html',1,'']]],
   ['proxycomponent',['ProxyComponent',['../classProxyComponent.html',1,'']]]
 ];

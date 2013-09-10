@@ -1,0 +1,26 @@
+var classVersion =
+[
+    [ "Version", "classVersion.html#a76aee7945b26ae61a2db38fa07bd02c1", null ],
+    [ "Version", "classVersion.html#a6d329b23a38003ff57e571466f733101", null ],
+    [ "Version", "classVersion.html#a9da07f7c776e2eddc26c8188d3739723", null ],
+    [ "Version", "classVersion.html#aa7f7b329b4de61cf75ff3cc8003b8563", null ],
+    [ "~Version", "classVersion.html#a9c9b3ec5271f2d00fe34f343d14ee996", null ],
+    [ "setVersion", "classVersion.html#a26639126306c3609539fc52e5c8cef9e", null ],
+    [ "setMajor", "classVersion.html#ae600bf46ad78a6e15055db56aa66b50e", null ],
+    [ "setMinor", "classVersion.html#a5bc482f52536169610e8ffd6253a1ff7", null ],
+    [ "setBuild", "classVersion.html#a6e618abde66a5e1379569a341f3aa73a", null ],
+    [ "setRevision", "classVersion.html#ae0474f543ebea94c0cc539af48de0b21", null ],
+    [ "major", "classVersion.html#a291549b5a976bf101f11ea38c5787e21", null ],
+    [ "minor", "classVersion.html#a037e41a616094c93e11fcc5113ad779b", null ],
+    [ "build", "classVersion.html#ab58456c2395d70d0a988993f4c26611d", null ],
+    [ "revision", "classVersion.html#af6fb1fab2568db662e47ed70a8079522", null ],
+    [ "operator<", "classVersion.html#a5d092507721a8f9768adff3ff1884640", null ],
+    [ "operator<=", "classVersion.html#a7445f8f8e2fb535f786fa0c516e86524", null ],
+    [ "operator>", "classVersion.html#a8a7d33d5d4bcc5cbac192597328c6f78", null ],
+    [ "operator>=", "classVersion.html#a20345f7cfcb7faad86e01a8a3cc00f78", null ],
+    [ "operator==", "classVersion.html#a2cd9e31878209449cf6b6871fa8df2ca", null ],
+    [ "operator!=", "classVersion.html#a85b8334778605508043fe809becac358", null ],
+    [ "isEqual", "classVersion.html#ae4c402ba267b9001386e5eda07b8b6d1", null ],
+    [ "isEmpty", "classVersion.html#ae491b7ae03481c6ab20d7d881dd6ac20", null ],
+    [ "toString", "classVersion.html#ab59c3f98a81b7288655d0bc36fdc61fe", null ]
+];

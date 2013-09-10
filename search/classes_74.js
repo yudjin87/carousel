@@ -2,6 +2,8 @@ var searchData=
 [
   ['tab',['Tab',['http://qt-project.org/doc/qt-4.8/qtextoption-tab.html',1,'QTextOption']]],
   ['textlogger',['TextLogger',['../classTextLogger.html',1,'']]],
+  ['toggleactionwrapper',['ToggleActionWrapper',['../classToggleActionWrapper.html',1,'']]],
+  ['toogledialogoperation',['ToogleDialogOperation',['../classToogleDialogOperation.html',1,'']]],
   ['toolbarcatalog',['ToolBarCatalog',['../classToolBarCatalog.html',1,'']]],
   ['toolbase',['ToolBase',['../classToolBase.html',1,'']]],
   ['touchpoint',['TouchPoint',['http://qt-project.org/doc/qt-4.8/qtouchevent-touchpoint.html',1,'QTouchEvent']]],

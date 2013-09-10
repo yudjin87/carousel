@@ -147,6 +147,7 @@ var searchData=
   ['hiresglobalx',['hiResGlobalX',['http://qt-project.org/doc/qt-4.8/qtabletevent.html#hiResGlobalX',1,'QTabletEvent']]],
   ['hiresglobaly',['hiResGlobalY',['http://qt-project.org/doc/qt-4.8/qtabletevent.html#hiResGlobalY',1,'QTabletEvent']]],
   ['history',['history',['http://qt-project.org/doc/qt-4.8/qwebpage.html#history',1,'QWebPage::history()'],['http://qt-project.org/doc/qt-4.8/qfiledialog.html#history',1,'QFileDialog::history()'],['http://qt-project.org/doc/qt-4.8/qgraphicswebview.html#history',1,'QGraphicsWebView::history()'],['http://qt-project.org/doc/qt-4.8/qwebview.html#history',1,'QWebView::history()']]],
+  ['historycapacity',['historyCapacity',['../classIScriptConsole.html#a6245c7f0dad495c845eb48bff212a3e8',1,'IScriptConsole::historyCapacity()'],['../classScriptConsole.html#a7de1e887275f58e5a5e504022aa0c00d',1,'ScriptConsole::historyCapacity()']]],
   ['historychanged',['historyChanged',['http://qt-project.org/doc/qt-4.8/qtextbrowser.html#historyChanged',1,'QTextBrowser']]],
   ['historycontains',['historyContains',['http://qt-project.org/doc/qt-4.8/qwebhistoryinterface.html#historyContains',1,'QWebHistoryInterface']]],
   ['historytitle',['historyTitle',['http://qt-project.org/doc/qt-4.8/qtextbrowser.html#historyTitle',1,'QTextBrowser']]],

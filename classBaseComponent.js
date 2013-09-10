@@ -1,0 +1,27 @@
+var classBaseComponent =
+[
+    [ "~BaseComponent", "classBaseComponent.html#ab9cf02be5ce287a20d59b96b3a59f94d", null ],
+    [ "BaseComponent", "classBaseComponent.html#af32e276edef6af651cbaa29f32701663", null ],
+    [ "BaseComponent", "classBaseComponent.html#a5a0ae092f4b013fb95d3c4994b46c8fb", null ],
+    [ "availability", "classBaseComponent.html#a348c2c4fe3fa9c25baf2c90aeb35fcae", null ],
+    [ "definition", "classBaseComponent.html#aa95589eb98b4f5831be7280c61a66c8a", null ],
+    [ "getExtension", "classBaseComponent.html#ae957e63997699aff05e1f42d27612ae0", null ],
+    [ "isCompatible", "classBaseComponent.html#a55e1803b5664460ec6119b7f79ee315a", null ],
+    [ "name", "classBaseComponent.html#aeac155823473397b1ec33433671d3e69", null ],
+    [ "setAvailability", "classBaseComponent.html#a5ca8867f6fd6371fee0e1f90bc1c6584", null ],
+    [ "shutdown", "classBaseComponent.html#a9232419cb431d474d952af5cb2a52f3e", null ],
+    [ "started", "classBaseComponent.html#a6145efac9fefa7adb455135091665c40", null ],
+    [ "startup", "classBaseComponent.html#ab8e06617258631d140fbafae2e1cccfd", null ],
+    [ "registerExtension", "classBaseComponent.html#a41b0ec65ef45432cd047196f0cfd717d", null ],
+    [ "onShutdown", "classBaseComponent.html#aa520fef5dfdfa52cf62294750935a635", null ],
+    [ "onStartup", "classBaseComponent.html#a549550df0ae859f84d43bf58c4efb45a", null ],
+    [ "addParent", "classBaseComponent.html#a0a05b4ecdf20624e861794afd8ba98aa", null ],
+    [ "loadAvailability", "classBaseComponent.html#a0de34c1c51ed2de8e9ffae49e5bb8a47", null ],
+    [ "saveAvailability", "classBaseComponent.html#a152cac121e3e7e147048a9bc8e2906cd", null ],
+    [ "setDescription", "classBaseComponent.html#abce169417d5158cb951b43391c19d259", null ],
+    [ "setShortName", "classBaseComponent.html#abc0c6d6fbd7100433928a10727f38c9b", null ],
+    [ "setProductName", "classBaseComponent.html#a97ebf2e3e81eba2eb2c2e03e50d5bbd7", null ],
+    [ "setProvider", "classBaseComponent.html#af92c512d7521f1d93f28c09fafdde3c8", null ],
+    [ "setVersion", "classBaseComponent.html#add1fd9f96c01e408532c6ecb8d265f58", null ],
+    [ "onAvailabilityChanged", "classBaseComponent.html#a9693071b1130ba614a6c17667f981574", null ]
+];
