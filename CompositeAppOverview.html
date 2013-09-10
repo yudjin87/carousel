@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>Carousel: $title</title>
+<title>Carousel: Composite application overview</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -73,6 +73,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 </div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Composite application overview </div>  </div>
+</div><!--header-->
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="CompositeAppOverviewSection"></a>
 Composite application overview</h1>
@@ -95,6 +99,8 @@ Content</h2>
 <a class="el" href="CompositeAppOverview.html#LifeTimePhases">Life-time phases</a> (how control some classes usage); </li>
 <li>
 <a class="el" href="CompositeAppOverview.html#PresentationAndModelResponsibilities">Presentation and model responsibilities and organization</a>; </li>
+<li>
+<a class="el" href="CompositeAppOverview.html#JsScripting">JavaScript support</a>; </li>
 <li>
 <a class="el" href="CompositeAppOverview.html#UnitTesting">Unit testing</a>; </li>
 <li>
@@ -170,7 +176,7 @@ In the startup of the Interactivity component, it registers the <a class="el" hr
 <li>
 The Component manager then starts the CS management UI component (the order of component starting is based on the component dependencies); </li>
 <li>
-The CS management UI component registers factory for the Show components <a class="el" href="classOperation.html" title="Inherit this abstract class to create a operations provides user to interact with application...">Operation</a> with <a class="el" href="classIDialogService.html" title="Defines methods for showing the dialogs. ">IDialogService</a> constructor injection, which was resolving through the locator. </li>
+The CS management UI component registers the <a class="el" href="classComponentsDialog.html">ComponentsDialog</a> widget for the <a class="el" href="classComponentDefinitionsModel.html">ComponentDefinitionsModel</a> in the <a class="el" href="classIDialogService.html" title="Defines methods for showing the dialogs. ">IDialogService</a>, so then client code can visualize <a class="el" href="classComponentDefinitionsModel.html">ComponentDefinitionsModel</a> without knowing of concrete widget (the widget could be changed by other component in run-time). </li>
 </ol>
 <div class="image">
 <img src="ConfigurationPhase.png" alt="ConfigurationPhase.png"/>
@@ -204,6 +210,9 @@ As was said later, operations could use undoable commands to modify data; </li>
 <li>
 New menu items and toolbars with tools and operations can be registered and added to the GUI using <a class="el" href="classIMenuCatalog.html" title="The IMenuCatalog interface provides access to members that work on the collection of application menu...">IMenuCatalog</a>, <a class="el" href="classIOperationCatalog.html" title="Use IOperationCatalog class to adding and fetching application operations. ">IOperationCatalog</a> and <a class="el" href="classIToolBarCatalog.html" title="The IToolBarCatalog interface exposes members that work on the collection of application toolbars...">IToolBarCatalog</a>; </li>
 </ol>
+<h2><a class="anchor" id="JsScripting"></a>
+JavaScript support</h2>
+<p>TODO</p>
 <h2><a class="anchor" id="UnitTesting"></a>
 Unit testing</h2>
 <ol>
@@ -231,7 +240,7 @@ New tools and operations: <a href="https://github.com/yudjin87/carousel/blob/mas
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 12 2013 09:47:12 for Carousel by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Sep 12 2013 10:15:17 for Carousel by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

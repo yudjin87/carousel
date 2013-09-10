@@ -436,6 +436,7 @@ var searchData=
   ['componentshutdown',['componentShutDown',['../classIComponentManager.html#af151e626693296d1367787d67e42c603',1,'IComponentManager']]],
   ['componentstarted',['componentStarted',['../classIComponentManager.html#a5e78f886dabf0a11d8b302effb9888c1',1,'IComponentManager']]],
   ['componentsystemuicomponent',['ComponentSystemUIComponent',['../classComponentSystemUIComponent.html',1,'']]],
+  ['composite_20application_20overview',['Composite application overview',['../CompositeAppOverview.html',1,'']]],
   ['compositecomponentprovider',['CompositeComponentProvider',['../classCompositeComponentProvider.html',1,'CompositeComponentProvider'],['../classCompositeComponentProvider.html#ad1a438d321b67e03ada394327ad891ba',1,'CompositeComponentProvider::CompositeComponentProvider()']]],
   ['compositionmode',['compositionMode',['http://qt-project.org/doc/qt-4.8/qpaintenginestate.html#compositionMode',1,'QPaintEngineState::compositionMode()'],['http://qt-project.org/doc/qt-4.8/qpainter.html#compositionMode',1,'QPainter::compositionMode()']]],
   ['compression',['compression',['http://qt-project.org/doc/qt-4.8/qimagewriter.html#compression',1,'QImageWriter']]],
