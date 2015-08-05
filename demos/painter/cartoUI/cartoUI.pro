@@ -79,3 +79,5 @@ copyExtraFiles($$OTHER_FILES, $$DESTDIR)
 
 RESOURCES += \
     cartoUI.qrc
+
+win32:QMAKE_POST_LINK += windeployqt $$shell_quote($$DESTDIR/$$TARGET.exe)
