@@ -3,9 +3,9 @@
  *
  * Carousel - Qt-based managed component library.
  *
- * Copyright: 2011-2015 Carousel team
+ * Copyright: 2011-2016 Carousel team
  * Authors:
- *   Eugene Chuguy <eugene.chuguy@gmail.com>
+ *   Yevhen Chuhui (Eugene Chuguy) <yevhen.chuhui@gmail.com>
  *
  * This program or library is free software; you can redistribute it
  * and/or modify it under the terms of the GNU Lesser General Public
