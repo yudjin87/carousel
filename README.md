@@ -17,17 +17,11 @@ Supported compilers (tested ones):
 ==================================
 <ol>
 <li>
-msvc13 x32 </li>
+msvc13 x32/x64 (Update 4 is required for initializer lists)</li>
 <li>
-msvc13 x64 </li>
+mingw4.7 x32/x64 </li>
 <li>
-mingw4.7 x32 </li>
-<li>
-mingw4.7 x64 </li>
-<li>
-gcc-4.7.2 x32 </li>
-<li>
-gcc-4.7.2 x64 </li>
+gcc-4.7.2 x32/x64 </li>
 <li>
 Clang-4.2 x64 (MacOS 10.7) </li>
 </ol>

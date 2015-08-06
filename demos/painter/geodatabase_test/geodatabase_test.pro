@@ -29,3 +29,5 @@ OTHER_FILES += \
     $$TEST_DATA
 
 copyExtraFiles($$TEST_DATA, $$DESTDIR/geodatabase_data/)
+
+win32:QMAKE_POST_LINK += windeployqt $$shell_quote($$DESTDIR/$$TARGET.exe)
