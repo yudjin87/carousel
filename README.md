@@ -29,5 +29,5 @@ Clang-4.2 x64 (MacOS 10.7) </li>
 Feedback
 ----------
 Feel free to contact me for any questions or propositions!
-Eugene Chuguy (eugene.chuguy@gmail.com)
+Yevhen Chuhui (yevhen.chuhui@gmail.com)
 
