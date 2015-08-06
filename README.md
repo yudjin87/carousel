@@ -3,7 +3,7 @@ Carousel
 
 Note, that it is still in development. 
 ----------
-See demo project for available capabilities (partially described here http://youtu.be/ajz-kjwT990)
+Look at project https://github.com/yudjin87/tour_du_monde for use cases (partially described here http://youtu.be/ajz-kjwT990)
 
 Carousel is a library for building component-oriented desktop applications. It helps extend core functionality of the application by external or internal components. An extension (component) can provide a toolbar with new tools, menus, commands or dock widgets, listen for and respond to events, perform feature validation, or even expose API to JavaScript and so on.
 
