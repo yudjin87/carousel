@@ -25,6 +25,7 @@ if("${QT_ROOT_LOCATION_${__COMPILER}}" STREQUAL "")
 else()
     set(ENV{CMAKE_PREFIX_PATH} ${__QT_ROOT_DIR})
     set(ENV{QTDIR} ${__QT_ROOT_DIR})
+	set(CMAKE_PREFIX_PATH ${__QT_ROOT_DIR})
 endif()
 
 message(STATUS "Qt directory: " ${__QT_ROOT_DIR})
