@@ -7,12 +7,14 @@ HEADERS += \
     $$PROJECT_HEADERS/PersistenceUIComponent.h \
     $$PROJECT_HEADERS/PersistenceUIInteractiveExtension.h \
     $$PROJECT_HEADERS/SaveOperation.h \
+    $$PROJECT_HEADERS/SaveAsOperation.h \
 
 SOURCES += \
     $$PROJECT_SOURCES/LoadOperation.cpp \
     $$PROJECT_SOURCES/PersistenceUIComponent.cpp \
     $$PROJECT_SOURCES/PersistenceUIInteractiveExtension.cpp \
     $$PROJECT_SOURCES/SaveOperation.cpp \
+    $$PROJECT_SOURCES/SaveAsOperation.cpp \
 
 OTHER_FILES += \
     $$PROJECT_SOURCES/org.carousel.PersistenceUI.definition \

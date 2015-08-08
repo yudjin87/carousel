@@ -16,7 +16,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- 
+
  * You should have received a copy of the GNU Lesser General
  * Public License along with this library; if not, write to the
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
@@ -26,6 +26,7 @@
 
 #include "components/persistenceui/PersistenceUIInteractiveExtension.h"
 #include "components/persistenceui/SaveOperation.h"
+#include "components/persistenceui/SaveAsOperation.h"
 #include "components/persistenceui/LoadOperation.h"
 #include <components/interactivity/ICatalogs.h>
 #include <components/interactivity/IOperationCatalog.h>
@@ -49,16 +50,18 @@ void PersistenceUIInteractiveExtension::configureGui(ICatalogs &inCatalogs, ISer
     Q_UNUSED(serviceLocator)
     IOperationCatalog &operationCatalog = inCatalogs.operationCatalog();
     Operation *save = operationCatalog.add(new SaveOperation());
+    Operation *saveAs = operationCatalog.add(new SaveAsOperation());
     Operation *load = operationCatalog.add(new LoadOperation());
 
     IToolBarCatalog &toolbarCatalog = inCatalogs.toolBarCatalog();
     QToolBar *toolBar = toolbarCatalog.add("File");
-    toolBar->addAction(save);
     toolBar->addAction(load);
+    toolBar->addAction(save);
 
     IMenuCatalog &menuCatalog = inCatalogs.menuCatalog();
     QMenu *file = menuCatalog.addMenu("File");
-    file->addAction(save);
     file->addAction(load);
+    file->addAction(save);
+    file->addAction(saveAs);
 }
 
