@@ -11,6 +11,7 @@ set(__SOURCES
     ${CRSL_TARGET_SOURCES}/LoadOperation.cpp 
     ${CRSL_TARGET_SOURCES}/PersistenceUIComponent.cpp 
     ${CRSL_TARGET_SOURCES}/PersistenceUIInteractiveExtension.cpp 
+    ${CRSL_TARGET_SOURCES}/SaveAsOperation.cpp 
     ${CRSL_TARGET_SOURCES}/SaveOperation.cpp 
 )
 	
@@ -21,6 +22,7 @@ set(__HEADERS
     ${CRSL_TARGET_HEADERS}/persistenceUI_api.h 
     ${CRSL_TARGET_HEADERS}/PersistenceUIComponent.h 
     ${CRSL_TARGET_HEADERS}/PersistenceUIInteractiveExtension.h 
+    ${CRSL_TARGET_HEADERS}/SaveAsOperation.h 
     ${CRSL_TARGET_HEADERS}/SaveOperation.h 
 )
 
