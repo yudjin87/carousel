@@ -79,7 +79,7 @@ public:
 
     void* operator()()
     {
-        TReq1::InstantiatedType* req1 = TReq1(m_serviceLocator).getObject();
+        typename TReq1::InstantiatedType* req1 = TReq1(m_serviceLocator).getObject();
         TToCreate* result = new TToCreate(req1);
         return result;
     }
@@ -99,8 +99,8 @@ public:
 
     void* operator()()
     {
-        TReq1::InstantiatedType* req1 = TReq1(m_serviceLocator).getObject();
-        TReq2::InstantiatedType* req2 = TReq2(m_serviceLocator).getObject();
+        typename TReq1::InstantiatedType* req1 = TReq1(m_serviceLocator).getObject();
+        typename TReq2::InstantiatedType* req2 = TReq2(m_serviceLocator).getObject();
         TToCreate* result = new TToCreate(req1, req2);
         return result;
     }
@@ -120,9 +120,9 @@ public:
 
     void* operator()()
     {
-        TReq1::InstantiatedType* req1 = TReq1(m_serviceLocator).getObject();
-        TReq2::InstantiatedType* req2 = TReq2(m_serviceLocator).getObject();
-        TReq3::InstantiatedType* req3 = TReq3(m_serviceLocator).getObject();
+        typename TReq1::InstantiatedType* req1 = TReq1(m_serviceLocator).getObject();
+        typename TReq2::InstantiatedType* req2 = TReq2(m_serviceLocator).getObject();
+        typename TReq3::InstantiatedType* req3 = TReq3(m_serviceLocator).getObject();
         TToCreate* result = new TToCreate(req1, req2, req3);
         return result;
     }
