@@ -1,4 +1,20 @@
 ########################################################################################
+# Format name for the external variable, which contains path to the Qt5 directory.
+# See user_settings.cmake.template to find all variables.
+string(TOUPPER ${CRSL_COMPILER}-x${CRSL_TARGET_PLATFORM_BITS} __COMPILER)
+set(__QT_ROOT_DIR ${QT_ROOT_LOCATION_${__COMPILER}})
+
+if("${QT_ROOT_LOCATION_${__COMPILER}}" STREQUAL "")
+    message(STATUS "The QT_ROOT_LOCATION_${__COMPILER} variable was not found, use environment variable QTDIR")
+    set(__QT_ROOT_DIR $ENV{QTDIR})
+else()
+    set(ENV{CMAKE_PREFIX_PATH} ${__QT_ROOT_DIR})
+    set(ENV{QTDIR} ${__QT_ROOT_DIR})
+endif()
+
+message(STATUS "Qt directory: " ${__QT_ROOT_DIR})
+
+########################################################################################
 # Map Qt libraries to debug/release configurations
 foreach(__LIB_BASENAME ${__LIBRARIES_BASENAME})
   if(DEBUG_VERBOSITY)
