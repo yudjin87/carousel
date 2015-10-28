@@ -37,8 +37,8 @@ class QJSEngine;
  *   by the component extension.
  * @details
  *   If some component wants to extend script with new funcitons or types, or register wrappers
- *   for some non-QObject classes, it should be a child of the JsScriptingComponent. This mean a
- *   dependency of component parent name:  @a "org.carousel.JsScripting". Then to get chance for
+ *   for some non-QObject classes, it should be a child of the QmlScriptingComponent. This mean a
+ *   dependency of component parent name:  @a "org.carousel.QmlScripting". Then to get chance for
  *   registration, this component should also provide IScriptExtension extension. The overridden
  *   IScriptExtension::configureEngine method will be invoked every time, when QJSEngine
  *   configuration is needed. So, in your extension you can register what ever you want in the

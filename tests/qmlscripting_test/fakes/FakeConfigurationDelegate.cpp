@@ -46,7 +46,7 @@ void FakeConfigurationDelegate::configureDefaults(QJSEngine *engine, IOutputHand
 {
     Q_UNUSED(output)
 
-    ServiceLocatorWrapper *wrapper = new ServiceLocatorWrapper(nullptr, engine);
+    ServiceLocatorWrapper *wrapper = new ServiceLocatorWrapper(nullptr);
     wrapper->setObjectName("NewWrapper");
     QJSValue value = engine->newQObject(wrapper);
     engine->globalObject().setProperty("serviceLocator", value);

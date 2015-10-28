@@ -43,7 +43,7 @@ ScriptConsoleTest::ScriptConsoleTest(QObject *parent)
 
 void ScriptConsoleTest::evaluateLine_shouldReturnTrueForCorrectScript()
 {
-    ScriptConsole console;
+    ScriptConsole console(new QJSEngine());
     QSignalSpy printed(&console, SIGNAL(printed(QString)));
     QSignalSpy error(&console, SIGNAL(error(QString)));
 
@@ -55,7 +55,7 @@ void ScriptConsoleTest::evaluateLine_shouldReturnTrueForCorrectScript()
 
 void ScriptConsoleTest::evaluateLine_shouldReturnFalseForIncorrectScript()
 {
-    ScriptConsole console;
+    ScriptConsole console(new QJSEngine());
     QSignalSpy printed(&console, SIGNAL(printed(QString)));
     QSignalSpy error(&console, SIGNAL(error(QString)));
 
@@ -66,7 +66,7 @@ void ScriptConsoleTest::evaluateLine_shouldReturnFalseForIncorrectScript()
 
 void ScriptConsoleTest::evaluateLine_shouldPopulateHistory()
 {
-    ScriptConsole console;
+    ScriptConsole console(new QJSEngine());
     QVERIFY(console.commandHistory().isEmpty());
 
     console.execCommand("oldest");
@@ -78,7 +78,7 @@ void ScriptConsoleTest::evaluateLine_shouldPopulateHistory()
 
 void ScriptConsoleTest::evaluateLine_shouldNotPopulateHistoryWithEmptyLine()
 {
-    ScriptConsole console;
+    ScriptConsole console(new QJSEngine());
     QVERIFY(console.commandHistory().isEmpty());
 
     console.execCommand("oldest");
@@ -91,7 +91,7 @@ void ScriptConsoleTest::evaluateLine_shouldNotPopulateHistoryWithEmptyLine()
 
 void ScriptConsoleTest::evaluateLine_shouldResetHistoryHead()
 {
-    ScriptConsole console;
+    ScriptConsole console(new QJSEngine());
     console.execCommand("0");
     console.execCommand("1");
     console.execCommand("2");
@@ -110,7 +110,7 @@ void ScriptConsoleTest::evaluateLine_shouldResetHistoryHead()
 
 void ScriptConsoleTest::historyPrev_shouldReturnCorrectCommand()
 {
-    ScriptConsole console;
+    ScriptConsole console(new QJSEngine());
     console.execCommand("oldest");
     console.execCommand("older");
     console.execCommand("newest");
@@ -126,7 +126,7 @@ void ScriptConsoleTest::historyPrev_shouldReturnCorrectCommand()
 
 void ScriptConsoleTest::historyNext_shouldReturnCorrectCommand()
 {
-    ScriptConsole console;
+    ScriptConsole console(new QJSEngine());
     console.execCommand("oldest");
     console.execCommand("older");
     console.execCommand("newest");
@@ -144,7 +144,7 @@ void ScriptConsoleTest::historyNext_shouldReturnCorrectCommand()
 
 void ScriptConsoleTest::historyPrevNext_shouldReturnCorrectCommands()
 {
-    ScriptConsole console;
+    ScriptConsole console(new QJSEngine());
     console.execCommand("oldest");
     console.execCommand("middle");
     console.execCommand("newest");

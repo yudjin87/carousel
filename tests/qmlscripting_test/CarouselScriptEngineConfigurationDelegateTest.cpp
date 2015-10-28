@@ -32,6 +32,8 @@
 #include <components/qmlscripting/CarouselScriptEngineConfigurationDelegate.h>
 
 #include <QtQml/QJSEngine>
+#include <QtQml/QQmlEngine>
+
 #include <QtTest/QtTest>
 
 CarouselScriptEngineConfigurationDelegateTest::CarouselScriptEngineConfigurationDelegateTest(QObject *parent)
@@ -77,11 +79,17 @@ void CarouselScriptEngineConfigurationDelegateTest::configureComponent_shouldNot
 
 void CarouselScriptEngineConfigurationDelegateTest::configureDefaults_shouldAddServiceLocatorObjectToEngine()
 {
-    ServiceLocator locator; QJSEngine engine;
+    ServiceLocator locator;
+    QJSEngine *engine = new QJSEngine(this);
     CarouselScriptEngineConfigurationDelegate delegate(&locator);
 
     MockOutputHandler output;
-    delegate.configureDefaults(&engine, &output);
+    delegate.configureDefaults(engine, &output);
 
-    QVERIFY(!engine.globalObject().property("serviceLocator").isNull());
+    QJSValue defaultLocator = engine->globalObject().property("serviceLocator");
+    QVERIFY(!defaultLocator.isNull());
+    QVERIFY(!defaultLocator.isUndefined());
+    QVERIFY(defaultLocator.isQObject());
+
+    QVERIFY(defaultLocator.toQObject() != nullptr);
 }

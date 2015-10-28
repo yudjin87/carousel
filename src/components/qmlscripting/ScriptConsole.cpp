@@ -28,21 +28,11 @@
 
 #include <carousel/logging/LoggerFacade.h>
 
-#include <QtQml/QJSEngine>
+#include <QtQml/QQmlEngine>
 
 namespace
 {
 static LoggerFacade Log = LoggerFacade::createLogger("ScriptConsole");
-}
-
-ScriptConsole::ScriptConsole(QObject *parent)
-    : m_engine(nullptr)
-    , m_history(QStringList())
-    , m_historyCommand(m_history.begin())
-    , m_historyCapacity(100) // TODO: read from application references
-{
-    setParent(parent);
-    m_engine = new QJSEngine(this);
 }
 
 ScriptConsole::ScriptConsole(QJSEngine *engine, QObject *parent)

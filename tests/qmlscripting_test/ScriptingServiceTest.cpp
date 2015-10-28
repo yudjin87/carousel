@@ -69,11 +69,16 @@ void ScriptingServiceTest::setDelegate_shouldResetConsoleEngine()
 
     QJSValue defaultLocator = engine->globalObject().property("serviceLocator");
     QVERIFY(!defaultLocator.isNull());
+    QVERIFY(!defaultLocator.isUndefined());
+    QVERIFY(defaultLocator.isQObject());
+
+    QVERIFY(defaultLocator.toQObject() != nullptr);
 
     FakeConfigurationDelegate *delegate = new FakeConfigurationDelegate();
     service.setDelegate(delegate);
 
     QObject *newWrapper = engine->globalObject().property("serviceLocator").toQObject();
+    QVERIFY(newWrapper != nullptr);
     QVERIFY(newWrapper->objectName() == "NewWrapper");
 }
 

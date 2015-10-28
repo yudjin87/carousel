@@ -163,14 +163,6 @@ public slots:
 signals:
     /*!
      * @details
-     *   This signal is emitted when script's execution is aborted.
-     *
-     * @sa run(), abort()
-     */
-    void aborted();
-
-    /*!
-     * @details
      *   This signal is emitted when script's file name is changed. It could happen
      *   on loading a new file or saving as a new file.
      *

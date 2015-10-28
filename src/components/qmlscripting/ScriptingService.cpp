@@ -37,7 +37,7 @@
 #include <carousel/utils/ObservableList.h>
 #include <components/interactivity/ICatalogs.h>
 
-#include <QtQml/QJSEngine>
+#include <QtQml/QQmlEngine>
 
 namespace
 {
@@ -47,7 +47,7 @@ static LoggerFacade Log = LoggerFacade::createLogger("ScriptingService");
 ScriptingService::ScriptingService(IServiceLocator *locator, IComponentManager *manager, QObject *parent)
     : m_componentManager(manager)
     , m_scriptExtensionConfigurationDelegate(new CarouselScriptEngineConfigurationDelegate(locator, this))
-    , m_console(new ScriptConsole(this))
+    , m_console(new ScriptConsole(createEngine()))
     , m_scripts(new ScriptCollection(this, this))
     , m_startScript()
 {
@@ -58,7 +58,7 @@ ScriptingService::ScriptingService(IServiceLocator *locator, IComponentManager *
 ScriptingService::ScriptingService(IServiceLocator *locator, IComponentManager *manager, const QString &startScript, QObject *parent)
     : m_componentManager(manager)
     , m_scriptExtensionConfigurationDelegate(new CarouselScriptEngineConfigurationDelegate(locator, this))
-    , m_console(new ScriptConsole(this))
+    , m_console(new ScriptConsole(createEngine()))
     , m_scripts(new ScriptCollection(this, this))
     , m_startScript(startScript)
 {

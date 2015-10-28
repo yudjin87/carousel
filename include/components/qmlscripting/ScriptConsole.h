@@ -54,13 +54,6 @@ class QML_SCRIPTING_API ScriptConsole : public IScriptConsole
 public:
     /*!
      * @details
-     * @constructor{ScriptConsole} using defaul QJSEngine as an engine
-     *   for command execution.
-     */
-    explicit ScriptConsole(QObject *parent = nullptr);
-
-    /*!
-     * @details
      * @constructor{ScriptConsole} using specified @a engine for command execution.
      *
      *   Note, that it takes ownership for engine.

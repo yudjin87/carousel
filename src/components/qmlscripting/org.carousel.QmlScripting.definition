@@ -1,6 +1,6 @@
- <component name="org.carousel.JsScripting" shortName="JsScripting">
+ <component name="org.carousel.QmlScripting" shortName="QmlScripting">
      <version>1.0</version>
-     <productName>JsScripting</productName>
+     <productName>QmlScripting</productName>
      <provider>Carousel</provider>
-     <location>./org.carousel.JsScripting</location>
+     <location>./org.carousel.QmlScripting</location>
  </component>

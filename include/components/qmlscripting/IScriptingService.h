@@ -35,16 +35,16 @@ class IScriptCollection;
 
 /*!
  * @brief
- *   This interface is an entry point to the JsScripting component.
+ *   This interface is an entry point to the QmlScripting component.
  * @details
- *   This service provides references to the important parts of the JsScripting component -
+ *   This service provides references to the important parts of the QmlScripting component -
  *   IScriptConsole and IScriptCollection. While these objects are used to evaluate scripts,
  *   there is also one more important reference - to the IScriptEngineConfigurationDelegate.
  *   This delegate is invoked every time to configure QJSEngine when new script is evaluated
  *   by IScriptUnit or when new component is started. It is allows new components to extend
  *   JavaScript with custom types, functions or wrappers for their objects.
  *
- *   It is registered in the service locator by the JsScriptingComponent.
+ *   It is registered in the service locator by the QmlScriptingComponent.
  *   You can locate to this service from the service locator:
  *
  * @code
