@@ -31,11 +31,13 @@
 #include "components/qmlscripting/IScriptCollection.h"
 #include "components/qmlscripting/IScriptUnit.h"
 #include "components/qmlscripting/ServiceLocatorWrapper.h"
+#include "components/qmlscripting/IScriptingService.h"
 #include "components/qmlscripting/ConsoleJsObject.h"
 #include "components/qmlscripting/QmlComponentManager.h"
 
 #include <carousel/componentsystem/IComponent.h>
 #include <carousel/logging/LoggerFacade.h>
+#include <carousel/utils/IServiceLocator.h>
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
@@ -116,6 +118,7 @@ void CarouselScriptEngineConfigurationDelegate::configureServiceLocator(QJSEngin
 
     engine->globalObject().setProperty("serviceLocator", jsLocatorWrapper);
 
+    //-------
     QmlComponentManager* manager = new QmlComponentManager(*locator);
     const QJSValue jsManagerWrapper = engine->newQObject(manager);
     if (jsManagerWrapper.isError())
@@ -125,6 +128,18 @@ void CarouselScriptEngineConfigurationDelegate::configureServiceLocator(QJSEngin
     }
 
     engine->globalObject().setProperty("componentManager", jsManagerWrapper);
+
+    //-------
+    IScriptingService* scriptingService = locator->locate<IScriptingService>();
+    const QJSValue jsScriptingService = engine->newQObject(scriptingService);
+    QQmlEngine::setObjectOwnership(scriptingService, QQmlEngine::CppOwnership);
+    if (jsScriptingService.isError())
+    {
+        Log.w(QString("Can't register scripting service: %1").arg(jsScriptingService.toString()));
+        return;
+    }
+
+    engine->globalObject().setProperty("scriptingService", jsScriptingService);
 }
 
 void CarouselScriptEngineConfigurationDelegate::registerConsole(QJSEngine *engine, IOutputHandler *output)
