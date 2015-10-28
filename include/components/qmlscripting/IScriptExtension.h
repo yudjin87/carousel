@@ -65,8 +65,6 @@ public:
      *   wrappers for your types.
      *
      *   You can use @a locator to obtain some services and register them in the @a engine.
-     *
-     * @sa REGISTER_METATYPE
      */
     virtual void configureEngine(IServiceLocator *locator, QJSEngine *engine) = 0;
 
