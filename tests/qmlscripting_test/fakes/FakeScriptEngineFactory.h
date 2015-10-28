@@ -24,43 +24,17 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "components/qmlscripting/ServiceLocatorWrapper.h"
+#pragma once
+#include <components/qmlscripting/IScriptEngineFactory.h>
 
-#include <carousel/utils/IServiceLocator.h>
-#include <QtQml/QQmlEngine>
+#include <QtCore/QObject>
 
-ServiceLocatorWrapper::ServiceLocatorWrapper(IServiceLocator *locator, QObject *parent)
-    : QObject(parent)
-    , m_locator(locator)
+class FakeScriptEngineFactory : public QObject, public IScriptEngineFactory
 {
-}
+    Q_OBJECT
+public:
+    FakeScriptEngineFactory(QObject *parent = nullptr);
 
-QObject *ServiceLocatorWrapper::locate(const QString &name)
-{
-    QObject* service = m_locator->locateToObject(name);
-    if (service == nullptr)
-    {
-        return nullptr;
-    }
-
-    QQmlEngine::setObjectOwnership(service, QQmlEngine::CppOwnership);
-    return service;
-}
-
-QObject *ServiceLocatorWrapper::build(const QString &name, bool takeOwnership)
-{
-    QObject *obj = m_locator->buildObject(name);
-    if (obj == nullptr)
-        return nullptr;
-
-    if (takeOwnership)
-        obj->setParent(this);
-
-    return obj;
-}
-
-QStringList ServiceLocatorWrapper::services() const
-{
-    return m_locator->services();
-}
+    QJSEngine *createEngine(IOutputHandler *output, QObject *parent);
+};
 

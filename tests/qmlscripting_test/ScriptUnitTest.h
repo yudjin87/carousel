@@ -24,43 +24,32 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "components/qmlscripting/ServiceLocatorWrapper.h"
+#pragma once
+#include <components/qmlscripting/IScriptEngineFactory.h>
+#include <QtCore/QObject>
 
-#include <carousel/utils/IServiceLocator.h>
-#include <QtQml/QQmlEngine>
+class ScriptUnit;
 
-ServiceLocatorWrapper::ServiceLocatorWrapper(IServiceLocator *locator, QObject *parent)
-    : QObject(parent)
-    , m_locator(locator)
+class ScriptUnitTest: public QObject, public IScriptEngineFactory
 {
-}
+    Q_OBJECT
+public:
+    ScriptUnitTest(QObject *parent = nullptr);
 
-QObject *ServiceLocatorWrapper::locate(const QString &name)
-{
-    QObject* service = m_locator->locateToObject(name);
-    if (service == nullptr)
-    {
-        return nullptr;
-    }
+    QJSEngine *createEngine(IOutputHandler *output, QObject *parent);
 
-    QQmlEngine::setObjectOwnership(service, QQmlEngine::CppOwnership);
-    return service;
-}
+private Q_SLOTS:
+    void shouldReturnAbsoluteFilePath();
+    void load_shouldLoadScript();
+    void load_shouldNotLoadScriptWithIncorrectFileName();
+    void load_shouldNotChangeDocumentModifiedFlag();
+    void save_shouldResetDocumentModifiedFlag();
+    void save_shouldNotResetDocumentModifiedFlagIfSavingFailed();
+    void saveAs_shouldChangeFileName();
+    void saveAs_shouldNotChangeFileNameIfSavingFailed();
 
-QObject *ServiceLocatorWrapper::build(const QString &name, bool takeOwnership)
-{
-    QObject *obj = m_locator->buildObject(name);
-    if (obj == nullptr)
-        return nullptr;
-
-    if (takeOwnership)
-        obj->setParent(this);
-
-    return obj;
-}
-
-QStringList ServiceLocatorWrapper::services() const
-{
-    return m_locator->services();
-}
+private:
+    QString m_testScriptPath;
+    ScriptUnit *m_unit;
+};
 

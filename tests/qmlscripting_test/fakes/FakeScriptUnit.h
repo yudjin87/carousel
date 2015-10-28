@@ -24,43 +24,25 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "components/qmlscripting/ServiceLocatorWrapper.h"
+#pragma once
+#include <components/qmlscripting/ScriptUnit.h>
 
-#include <carousel/utils/IServiceLocator.h>
-#include <QtQml/QQmlEngine>
-
-ServiceLocatorWrapper::ServiceLocatorWrapper(IServiceLocator *locator, QObject *parent)
-    : QObject(parent)
-    , m_locator(locator)
+class FakeScriptUnit : public ScriptUnit
 {
-}
+    Q_OBJECT
+public:
+    FakeScriptUnit(QObject *parent = nullptr);
+    FakeScriptUnit(const QString &filePath, QObject *parent = nullptr);
 
-QObject *ServiceLocatorWrapper::locate(const QString &name)
-{
-    QObject* service = m_locator->locateToObject(name);
-    if (service == nullptr)
-    {
-        return nullptr;
-    }
+public slots:
+    bool load();
+    bool load(const QString &filePath);
 
-    QQmlEngine::setObjectOwnership(service, QQmlEngine::CppOwnership);
-    return service;
-}
+protected:
+    bool saveToFile(const QString &filePath);
 
-QObject *ServiceLocatorWrapper::build(const QString &name, bool takeOwnership)
-{
-    QObject *obj = m_locator->buildObject(name);
-    if (obj == nullptr)
-        return nullptr;
-
-    if (takeOwnership)
-        obj->setParent(this);
-
-    return obj;
-}
-
-QStringList ServiceLocatorWrapper::services() const
-{
-    return m_locator->services();
-}
+public:
+    bool saveToFileResult;
+    bool loadFileResult;
+};
 

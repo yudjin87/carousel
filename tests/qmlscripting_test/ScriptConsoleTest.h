@@ -16,7 +16,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
-
+ 
  * You should have received a copy of the GNU Lesser General
  * Public License along with this library; if not, write to the
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
@@ -24,43 +24,29 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "components/qmlscripting/ServiceLocatorWrapper.h"
+#pragma once
+#include <QtCore/QObject>
 
-#include <carousel/utils/IServiceLocator.h>
-#include <QtQml/QQmlEngine>
-
-ServiceLocatorWrapper::ServiceLocatorWrapper(IServiceLocator *locator, QObject *parent)
-    : QObject(parent)
-    , m_locator(locator)
+class ScriptConsoleTest: public QObject
 {
-}
+    Q_OBJECT
+public:
+    ScriptConsoleTest(QObject *parent = nullptr);
 
-QObject *ServiceLocatorWrapper::locate(const QString &name)
-{
-    QObject* service = m_locator->locateToObject(name);
-    if (service == nullptr)
-    {
-        return nullptr;
-    }
+private Q_SLOTS:
+    void evaluateLine_shouldReturnTrueForCorrectScript();
+    void evaluateLine_shouldReturnFalseForIncorrectScript();
+    void evaluateLine_shouldPopulateHistory();
+    void evaluateLine_shouldNotPopulateHistoryWithEmptyLine();
+    void evaluateLine_shouldResetHistoryHead();
 
-    QQmlEngine::setObjectOwnership(service, QQmlEngine::CppOwnership);
-    return service;
-}
+    void historyPrev_shouldReturnCorrectCommand();
+    void historyNext_shouldReturnCorrectCommand();
+    void historyPrevNext_shouldReturnCorrectCommands();
 
-QObject *ServiceLocatorWrapper::build(const QString &name, bool takeOwnership)
-{
-    QObject *obj = m_locator->buildObject(name);
-    if (obj == nullptr)
-        return nullptr;
+private:
+    static const QByteArray simpleScript;
+    static const QByteArray wrongScript;
+};
 
-    if (takeOwnership)
-        obj->setParent(this);
-
-    return obj;
-}
-
-QStringList ServiceLocatorWrapper::services() const
-{
-    return m_locator->services();
-}
 

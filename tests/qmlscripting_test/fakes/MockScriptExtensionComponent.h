@@ -24,43 +24,44 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "components/qmlscripting/ServiceLocatorWrapper.h"
+#pragma once
+#include <carousel/componentsystem/BaseComponent.h>
+#include <components/qmlscripting/IScriptExtension.h>
 
-#include <carousel/utils/IServiceLocator.h>
-#include <QtQml/QQmlEngine>
+class FakeScriptExtension;
 
-ServiceLocatorWrapper::ServiceLocatorWrapper(IServiceLocator *locator, QObject *parent)
-    : QObject(parent)
-    , m_locator(locator)
+class MockNoScriptExtensionComponent : public BaseComponent
 {
-}
+public:
+    MockNoScriptExtensionComponent();
+};
 
-QObject *ServiceLocatorWrapper::locate(const QString &name)
+class MockScriptExtensionComponent : public BaseComponent
 {
-    QObject* service = m_locator->locateToObject(name);
-    if (service == nullptr)
+public:
+    MockScriptExtensionComponent();
+    MockScriptExtensionComponent(const QString &name);
+    ~MockScriptExtensionComponent();
+
+public:
+    FakeScriptExtension *m_extension;
+};
+
+class FakeScriptExtension : public IScriptExtension
+{
+public:
+    FakeScriptExtension()
+        : m_configureCalled(false)
     {
-        return nullptr;
     }
 
-    QQmlEngine::setObjectOwnership(service, QQmlEngine::CppOwnership);
-    return service;
-}
+    void configureEngine(IServiceLocator *, QJSEngine *)
+    {
+        m_configureCalled = true;
+    }
 
-QObject *ServiceLocatorWrapper::build(const QString &name, bool takeOwnership)
-{
-    QObject *obj = m_locator->buildObject(name);
-    if (obj == nullptr)
-        return nullptr;
+public:
+    bool m_configureCalled;
+};
 
-    if (takeOwnership)
-        obj->setParent(this);
-
-    return obj;
-}
-
-QStringList ServiceLocatorWrapper::services() const
-{
-    return m_locator->services();
-}
 

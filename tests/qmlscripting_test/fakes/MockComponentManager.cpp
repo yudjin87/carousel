@@ -16,7 +16,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
-
+ 
  * You should have received a copy of the GNU Lesser General
  * Public License along with this library; if not, write to the
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
@@ -24,43 +24,30 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "components/qmlscripting/ServiceLocatorWrapper.h"
+#include "MockComponentManager.h"
 
-#include <carousel/utils/IServiceLocator.h>
-#include <QtQml/QQmlEngine>
-
-ServiceLocatorWrapper::ServiceLocatorWrapper(IServiceLocator *locator, QObject *parent)
-    : QObject(parent)
-    , m_locator(locator)
+MockComponentManager::MockComponentManager(IServiceLocator *serviceLocator)
+    : ComponentManager(serviceLocator)
 {
 }
 
-QObject *ServiceLocatorWrapper::locate(const QString &name)
+void MockComponentManager::callOnComponentStarted(IComponent *component)
 {
-    QObject* service = m_locator->locateToObject(name);
-    if (service == nullptr)
-    {
-        return nullptr;
-    }
-
-    QQmlEngine::setObjectOwnership(service, QQmlEngine::CppOwnership);
-    return service;
+    onComponentStarted(component);
 }
 
-QObject *ServiceLocatorWrapper::build(const QString &name, bool takeOwnership)
+void MockComponentManager::callOnComponentAboutToShutDown(IComponent *component)
 {
-    QObject *obj = m_locator->buildObject(name);
-    if (obj == nullptr)
-        return nullptr;
-
-    if (takeOwnership)
-        obj->setParent(this);
-
-    return obj;
+    onComponentAboutToShutDown(component);
 }
 
-QStringList ServiceLocatorWrapper::services() const
+void MockComponentManager::callOnAboutToShutDown()
 {
-    return m_locator->services();
+    onAboutToShutDown();
+}
+
+void MockComponentManager::callOnStartUp()
+{
+    onStartedUp();
 }
 

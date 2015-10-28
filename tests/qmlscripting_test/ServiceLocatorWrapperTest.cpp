@@ -24,43 +24,25 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "components/qmlscripting/ServiceLocatorWrapper.h"
+#include "ServiceLocatorWrapperTest.h"
 
-#include <carousel/utils/IServiceLocator.h>
-#include <QtQml/QQmlEngine>
+#include <carousel/utils/ServiceLocator.h>
+#include <components/qmlscripting/ServiceLocatorWrapper.h>
 
-ServiceLocatorWrapper::ServiceLocatorWrapper(IServiceLocator *locator, QObject *parent)
+#include <QtTest/QtTest>
+
+ServiceLocatorWrapperTest::ServiceLocatorWrapperTest(QObject *parent)
     : QObject(parent)
-    , m_locator(locator)
 {
 }
 
-QObject *ServiceLocatorWrapper::locate(const QString &name)
+void ServiceLocatorWrapperTest::findService_shouldReturnService()
 {
-    QObject* service = m_locator->locateToObject(name);
-    if (service == nullptr)
-    {
-        return nullptr;
-    }
+    ServiceLocator locator; locator.registerInstance<ServiceLocatorWrapperTest>(this);
+    ServiceLocatorWrapper wrapper(&locator);
 
-    QQmlEngine::setObjectOwnership(service, QQmlEngine::CppOwnership);
-    return service;
-}
+    QObject *service = wrapper.locate("ServiceLocatorWrapperTest");
 
-QObject *ServiceLocatorWrapper::build(const QString &name, bool takeOwnership)
-{
-    QObject *obj = m_locator->buildObject(name);
-    if (obj == nullptr)
-        return nullptr;
-
-    if (takeOwnership)
-        obj->setParent(this);
-
-    return obj;
-}
-
-QStringList ServiceLocatorWrapper::services() const
-{
-    return m_locator->services();
+    QCOMPARE(this, service);
 }
 

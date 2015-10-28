@@ -1,6 +1,6 @@
 ###############################################################################
 # utils project
-set(CRSL_PROJECT_NAME "org.carousel.JsScripting")
+set(CRSL_PROJECT_NAME "org.carousel.QmlScripting")
 set(CRSL_TARGET_TYPE "components")
 
 include(cmake/target_utils)
@@ -9,7 +9,7 @@ include(cmake/target_utils)
 # Sources
 set(__SOURCES
     ${CRSL_TARGET_SOURCES}/CarouselScriptEngineConfigurationDelegate.cpp 
-    ${CRSL_TARGET_SOURCES}/JsScriptingComponent.cpp 
+    ${CRSL_TARGET_SOURCES}/QmlScriptingComponent.cpp 
     ${CRSL_TARGET_SOURCES}/prototypes/ComponentDefinitionPrototype.cpp 
     ${CRSL_TARGET_SOURCES}/prototypes/PointClass.cpp 
     ${CRSL_TARGET_SOURCES}/prototypes/PointFPrototype.cpp 
@@ -36,7 +36,7 @@ set(__HEADERS
     ${CRSL_TARGET_HEADERS}/IScriptingService.h 
     ${CRSL_TARGET_HEADERS}/IScriptUnit.h 
     ${CRSL_TARGET_HEADERS}/jsscripting_global.h 
-    ${CRSL_TARGET_HEADERS}/JsScriptingComponent.h 
+    ${CRSL_TARGET_HEADERS}/QmlScriptingComponent.h 
     ${CRSL_TARGET_HEADERS}/prototypes/ComponentDefinitionPrototype.h 
     ${CRSL_TARGET_HEADERS}/prototypes/PointClass.h 
     ${CRSL_TARGET_HEADERS}/prototypes/PointFPrototype.h 
@@ -53,7 +53,7 @@ set(__HEADERS
 ######################################################################
 # Definitions
 set(__OTHER_FILES
-    ${CRSL_TARGET_SOURCES}/org.carousel.JsScripting.definition 
+    ${CRSL_TARGET_SOURCES}/org.carousel.QmlScripting.definition 
 )
 
 ######################################################################

@@ -24,43 +24,31 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "components/qmlscripting/ServiceLocatorWrapper.h"
+#include "FakeConfigurationDelegate.h"
 
-#include <carousel/utils/IServiceLocator.h>
-#include <QtQml/QQmlEngine>
+#include <components/qmlscripting/ServiceLocatorWrapper.h>
 
-ServiceLocatorWrapper::ServiceLocatorWrapper(IServiceLocator *locator, QObject *parent)
-    : QObject(parent)
-    , m_locator(locator)
+#include <QtQml/QJSEngine>
+
+FakeConfigurationDelegate::FakeConfigurationDelegate()
+    : configureFromComponentCalled(false)
 {
 }
 
-QObject *ServiceLocatorWrapper::locate(const QString &name)
+void FakeConfigurationDelegate::configureFromComponent(IComponent *component, QJSEngine *engine)
 {
-    QObject* service = m_locator->locateToObject(name);
-    if (service == nullptr)
-    {
-        return nullptr;
-    }
-
-    QQmlEngine::setObjectOwnership(service, QQmlEngine::CppOwnership);
-    return service;
+    Q_UNUSED(component)
+    Q_UNUSED(engine)
+    configureFromComponentCalled = true;
 }
 
-QObject *ServiceLocatorWrapper::build(const QString &name, bool takeOwnership)
+void FakeConfigurationDelegate::configureDefaults(QJSEngine *engine, IOutputHandler *output)
 {
-    QObject *obj = m_locator->buildObject(name);
-    if (obj == nullptr)
-        return nullptr;
+    Q_UNUSED(output)
 
-    if (takeOwnership)
-        obj->setParent(this);
-
-    return obj;
-}
-
-QStringList ServiceLocatorWrapper::services() const
-{
-    return m_locator->services();
+    ServiceLocatorWrapper *wrapper = new ServiceLocatorWrapper(nullptr, engine);
+    wrapper->setObjectName("NewWrapper");
+    QJSValue value = engine->newQObject(wrapper);
+    engine->globalObject().setProperty("serviceLocator", value);
 }
 

@@ -102,7 +102,7 @@ void CarouselScriptEngineConfigurationDelegate::configureExtension(IServiceLocat
 
 void CarouselScriptEngineConfigurationDelegate::configureServiceLocator(QJSEngine *engine, IServiceLocator *locator)
 {
-    ServiceLocatorWrapper *wrapper = new ServiceLocatorWrapper(locator, engine);
+    ServiceLocatorWrapper *wrapper = new ServiceLocatorWrapper(locator); // engine takes ownership: JavaScriptOwnership
     QJSValue value = engine->newQObject(wrapper);
     engine->globalObject().setProperty("serviceLocator", value);
 }

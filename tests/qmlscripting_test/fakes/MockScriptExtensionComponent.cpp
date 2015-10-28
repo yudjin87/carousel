@@ -16,7 +16,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
-
+ 
  * You should have received a copy of the GNU Lesser General
  * Public License along with this library; if not, write to the
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
@@ -24,43 +24,31 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "components/qmlscripting/ServiceLocatorWrapper.h"
+#include "MockScriptExtensionComponent.h"
 
-#include <carousel/utils/IServiceLocator.h>
-#include <QtQml/QQmlEngine>
-
-ServiceLocatorWrapper::ServiceLocatorWrapper(IServiceLocator *locator, QObject *parent)
-    : QObject(parent)
-    , m_locator(locator)
+MockScriptExtensionComponent::MockScriptExtensionComponent()
+    : BaseComponent("MockScriptExtensionComponent")
+    , m_extension(new FakeScriptExtension())
 {
+    registerExtension<IScriptExtension>(m_extension);
 }
 
-QObject *ServiceLocatorWrapper::locate(const QString &name)
+MockScriptExtensionComponent::MockScriptExtensionComponent(const QString &name)
+    : BaseComponent(name)
+    , m_extension(new FakeScriptExtension())
 {
-    QObject* service = m_locator->locateToObject(name);
-    if (service == nullptr)
-    {
-        return nullptr;
-    }
-
-    QQmlEngine::setObjectOwnership(service, QQmlEngine::CppOwnership);
-    return service;
+    registerExtension<IScriptExtension>(m_extension);
 }
 
-QObject *ServiceLocatorWrapper::build(const QString &name, bool takeOwnership)
+MockScriptExtensionComponent::~MockScriptExtensionComponent()
 {
-    QObject *obj = m_locator->buildObject(name);
-    if (obj == nullptr)
-        return nullptr;
-
-    if (takeOwnership)
-        obj->setParent(this);
-
-    return obj;
+    delete m_extension;
+    m_extension = nullptr;
 }
 
-QStringList ServiceLocatorWrapper::services() const
+MockNoScriptExtensionComponent::MockNoScriptExtensionComponent()
+    : BaseComponent("MockNoScriptExtensionComponent")
 {
-    return m_locator->services();
+
 }
 
