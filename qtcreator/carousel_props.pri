@@ -34,12 +34,6 @@
 # Do not create symbol links
 CONFIG += plugin
 
-# Library information
-#VERSION = 0.0.1.0
-#QMAKE_TARGET_COMPANY = "Carousel"
-#QMAKE_TARGET_DESCRIPTION = "Qt-based managed component library"
-#QMAKE_TARGET_COPYRIGHT = "Copyright (c): 2011-2012 Carousel team"
-
 IDE_SOURCE_TREE = $$PWD
 CAROUSEL_WD  = $$PWD/..
 CPP_SOURCE_TREE = $$CAROUSEL_WD/src
@@ -53,6 +47,7 @@ win32-g*:BUILD_CONFIG=mingw
 win32-msvc*:BUILD_CONFIG=msvc
 macx:BUILD_CONFIG=clang
 unix:BUILD_CONFIG=gnu
+unix:android:BUILD_CONFIG=android
 
 contains(QMAKE_HOST.arch, x86_64) {
     BUILD_CONFIG=$${BUILD_CONFIG}-x64
