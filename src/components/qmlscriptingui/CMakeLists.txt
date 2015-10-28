@@ -10,9 +10,9 @@ include(cmake/target_utils)
 set(__SOURCES
     ${CRSL_TARGET_SOURCES}/CodeHighlighter.cpp 
     ${CRSL_TARGET_SOURCES}/ColorTheme.cpp 
+    ${CRSL_TARGET_SOURCES}/LexemeAppearance.cpp 
     ${CRSL_TARGET_SOURCES}/QmlScriptingUIComponent.cpp 
     ${CRSL_TARGET_SOURCES}/QmlScriptingUIInteractiveExtension.cpp 
-    ${CRSL_TARGET_SOURCES}/LexemeAppearance.cpp 
     ${CRSL_TARGET_SOURCES}/ScriptCollectionDialog.cpp 
     ${CRSL_TARGET_SOURCES}/ScriptCollectionModel.cpp 
     ${CRSL_TARGET_SOURCES}/ScriptConsoleView.cpp 
@@ -25,10 +25,10 @@ set(__SOURCES
 set(__HEADERS
     ${CRSL_TARGET_HEADERS}/CodeHighlighter.h 
     ${CRSL_TARGET_HEADERS}/ColorTheme.h 
+    ${CRSL_TARGET_HEADERS}/LexemeAppearance.h 
     ${CRSL_TARGET_HEADERS}/qmlscriptingui_global.h 
     ${CRSL_TARGET_HEADERS}/QmlScriptingUIComponent.h 
     ${CRSL_TARGET_HEADERS}/QmlScriptingUIInteractiveExtension.h 
-    ${CRSL_TARGET_HEADERS}/LexemeAppearance.h 
     ${CRSL_TARGET_HEADERS}/ScriptCollectionDialog.h 
     ${CRSL_TARGET_HEADERS}/ScriptCollectionModel.h 
     ${CRSL_TARGET_HEADERS}/ScriptConsoleView.h 

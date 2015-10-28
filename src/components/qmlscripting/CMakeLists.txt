@@ -8,52 +8,42 @@ include(cmake/target_utils)
 ######################################################################
 # Sources
 set(__SOURCES
-    ${CRSL_TARGET_SOURCES}/CarouselScriptEngineConfigurationDelegate.cpp 
-    ${CRSL_TARGET_SOURCES}/QmlScriptingComponent.cpp 
-    ${CRSL_TARGET_SOURCES}/prototypes/ComponentDefinitionPrototype.cpp 
-    ${CRSL_TARGET_SOURCES}/prototypes/PointClass.cpp 
-    ${CRSL_TARGET_SOURCES}/prototypes/PointFPrototype.cpp 
-    ${CRSL_TARGET_SOURCES}/prototypes/PointPrototype.cpp 
-    ${CRSL_TARGET_SOURCES}/prototypes/RectFPrototype.cpp 
-    ${CRSL_TARGET_SOURCES}/ScriptCollection.cpp 
-    ${CRSL_TARGET_SOURCES}/ScriptConsole.cpp 
-    ${CRSL_TARGET_SOURCES}/ScriptingService.cpp 
-    ${CRSL_TARGET_SOURCES}/ScriptUnit.cpp 
-    ${CRSL_TARGET_SOURCES}/ServiceLocatorWrapper.cpp 
-    ${CRSL_TARGET_SOURCES}/SimpleCompleter.cpp 
+    ${CRSL_TARGET_SOURCES}/CarouselScriptEngineConfigurationDelegate.cpp
+    ${CRSL_TARGET_SOURCES}/QmlScriptingComponent.cpp
+    ${CRSL_TARGET_SOURCES}/ScriptCollection.cpp
+    ${CRSL_TARGET_SOURCES}/ScriptConsole.cpp
+    ${CRSL_TARGET_SOURCES}/ScriptingService.cpp
+    ${CRSL_TARGET_SOURCES}/ScriptUnit.cpp
+    ${CRSL_TARGET_SOURCES}/ServiceLocatorWrapper.cpp
+    ${CRSL_TARGET_SOURCES}/SimpleCompleter.cpp
 )
-	
+
 ######################################################################
 # Headers
 set(__HEADERS
-    ${CRSL_TARGET_HEADERS}/CarouselScriptEngineConfigurationDelegate.h 
-    ${CRSL_TARGET_HEADERS}/IOutputHandler.h 
-    ${CRSL_TARGET_HEADERS}/IScriptCollection.h 
-    ${CRSL_TARGET_HEADERS}/IScriptConsole.h 
-    ${CRSL_TARGET_HEADERS}/IScriptEngineConfigurationDelegate.h 
-    ${CRSL_TARGET_HEADERS}/IScriptEngineFactory.h 
-    ${CRSL_TARGET_HEADERS}/IScriptExtension.h 
-    ${CRSL_TARGET_HEADERS}/IScriptingService.h 
-    ${CRSL_TARGET_HEADERS}/IScriptUnit.h 
-    ${CRSL_TARGET_HEADERS}/jsscripting_global.h 
-    ${CRSL_TARGET_HEADERS}/QmlScriptingComponent.h 
-    ${CRSL_TARGET_HEADERS}/prototypes/ComponentDefinitionPrototype.h 
-    ${CRSL_TARGET_HEADERS}/prototypes/PointClass.h 
-    ${CRSL_TARGET_HEADERS}/prototypes/PointFPrototype.h 
-    ${CRSL_TARGET_HEADERS}/prototypes/PointPrototype.h 
-    ${CRSL_TARGET_HEADERS}/prototypes/RectFPrototype.h 
-    ${CRSL_TARGET_HEADERS}/ScriptCollection.h 
-    ${CRSL_TARGET_HEADERS}/ScriptConsole.h 
-    ${CRSL_TARGET_HEADERS}/ScriptingService.h 
-    ${CRSL_TARGET_HEADERS}/ScriptUnit.h 
-    ${CRSL_TARGET_HEADERS}/ServiceLocatorWrapper.h 
-    ${CRSL_TARGET_HEADERS}/SimpleCompleter.h 
+    ${CRSL_TARGET_HEADERS}/CarouselScriptEngineConfigurationDelegate.h
+    ${CRSL_TARGET_HEADERS}/IOutputHandler.h
+    ${CRSL_TARGET_HEADERS}/IScriptCollection.h
+    ${CRSL_TARGET_HEADERS}/IScriptConsole.h
+    ${CRSL_TARGET_HEADERS}/IScriptEngineConfigurationDelegate.h
+    ${CRSL_TARGET_HEADERS}/IScriptEngineFactory.h
+    ${CRSL_TARGET_HEADERS}/IScriptExtension.h
+    ${CRSL_TARGET_HEADERS}/IScriptingService.h
+    ${CRSL_TARGET_HEADERS}/IScriptUnit.h
+    ${CRSL_TARGET_HEADERS}/qmlscripting_global.h
+    ${CRSL_TARGET_HEADERS}/QmlScriptingComponent.h
+    ${CRSL_TARGET_HEADERS}/ScriptCollection.h
+    ${CRSL_TARGET_HEADERS}/ScriptConsole.h
+    ${CRSL_TARGET_HEADERS}/ScriptingService.h
+    ${CRSL_TARGET_HEADERS}/ScriptUnit.h
+    ${CRSL_TARGET_HEADERS}/ServiceLocatorWrapper.h
+    ${CRSL_TARGET_HEADERS}/SimpleCompleter.h
 )
 
 ######################################################################
 # Definitions
 set(__OTHER_FILES
-    ${CRSL_TARGET_SOURCES}/org.carousel.QmlScripting.definition 
+    ${CRSL_TARGET_SOURCES}/org.carousel.QmlScripting.definition
 )
 
 ######################################################################
@@ -84,7 +74,7 @@ target_link_libraries(${CRSL_PROJECT_NAME} Carousel)
 
 ###############################################################################
 # Qt dependencies
-qt5_use_modules(${CRSL_PROJECT_NAME} Core Gui Script)
+qt5_use_modules(${CRSL_PROJECT_NAME} Core Gui Qml)
 
 ###############################################################################
 # Copy definition to the output directory, right near the library
