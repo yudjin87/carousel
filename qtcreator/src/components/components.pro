@@ -5,6 +5,7 @@ SUBDIRS += \
     interactivity \
     undo \
     componentsystemui \
+    qmlscripting \
     jsscripting \
     jsscriptingui \
     persistence \
