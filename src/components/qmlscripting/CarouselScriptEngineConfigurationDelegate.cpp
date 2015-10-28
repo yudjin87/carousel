@@ -32,6 +32,7 @@
 #include "components/qmlscripting/IScriptUnit.h"
 #include "components/qmlscripting/ServiceLocatorWrapper.h"
 #include "components/qmlscripting/ConsoleJsObject.h"
+#include "components/qmlscripting/QmlComponentManager.h"
 
 #include <carousel/componentsystem/IComponent.h>
 #include <carousel/logging/LoggerFacade.h>
@@ -67,6 +68,8 @@ CarouselScriptEngineConfigurationDelegate::CarouselScriptEngineConfigurationDele
     , m_locator(locator)
 {
     setParent(parent);
+
+    qmlRegisterInterface<IComponent>("IComponent");
 
     qmlRegisterInterface<IScriptConsole>("IScriptConsole");
     qmlRegisterInterface<IScriptCollection>("IScriptCollection");
@@ -104,8 +107,24 @@ void CarouselScriptEngineConfigurationDelegate::configureExtension(IServiceLocat
 void CarouselScriptEngineConfigurationDelegate::configureServiceLocator(QJSEngine *engine, IServiceLocator *locator)
 {
     ServiceLocatorWrapper *wrapper = new ServiceLocatorWrapper(locator); // engine takes ownership: JavaScriptOwnership
-    QJSValue value = engine->newQObject(wrapper);
-    engine->globalObject().setProperty("serviceLocator", value);
+    const QJSValue jsLocatorWrapper = engine->newQObject(wrapper);
+    if (jsLocatorWrapper.isError())
+    {
+        Log.w(QString("Can't register service locator: %1").arg(jsLocatorWrapper.toString()));
+        return;
+    }
+
+    engine->globalObject().setProperty("serviceLocator", jsLocatorWrapper);
+
+    QmlComponentManager* manager = new QmlComponentManager(*locator);
+    const QJSValue jsManagerWrapper = engine->newQObject(manager);
+    if (jsManagerWrapper.isError())
+    {
+        Log.w(QString("Can't register component manager: %1").arg(jsManagerWrapper.toString()));
+        return;
+    }
+
+    engine->globalObject().setProperty("componentManager", jsManagerWrapper);
 }
 
 void CarouselScriptEngineConfigurationDelegate::registerConsole(QJSEngine *engine, IOutputHandler *output)
