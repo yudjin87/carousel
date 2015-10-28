@@ -19,6 +19,7 @@ HEADERS += \
     $$PROJECT_HEADERS/ScriptUnit.h \
     $$PROJECT_HEADERS/ServiceLocatorWrapper.h \
     $$PROJECT_HEADERS/SimpleCompleter.h \
+    $$PROJECT_HEADERS/ConsoleJsObject.h \
 
 SOURCES += \
     $$PROJECT_SOURCES/CarouselScriptEngineConfigurationDelegate.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
     $$PROJECT_SOURCES/ScriptUnit.cpp \
     $$PROJECT_SOURCES/ServiceLocatorWrapper.cpp \
     $$PROJECT_SOURCES/SimpleCompleter.cpp \
+    $$PROJECT_SOURCES/ConsoleJsObject.cpp \
 
 OTHER_FILES += \
     $$PROJECT_SOURCES/org.carousel.QmlScripting.definition \

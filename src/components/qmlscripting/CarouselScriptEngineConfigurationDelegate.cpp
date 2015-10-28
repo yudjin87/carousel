@@ -31,6 +31,7 @@
 #include "components/qmlscripting/IScriptCollection.h"
 #include "components/qmlscripting/IScriptUnit.h"
 #include "components/qmlscripting/ServiceLocatorWrapper.h"
+#include "components/qmlscripting/ConsoleJsObject.h"
 
 #include <carousel/componentsystem/IComponent.h>
 #include <carousel/logging/LoggerFacade.h>
@@ -92,7 +93,7 @@ void CarouselScriptEngineConfigurationDelegate::configureFromComponent(IComponen
 void CarouselScriptEngineConfigurationDelegate::configureDefaults(QJSEngine *engine, IOutputHandler *output)
 {
     configureServiceLocator(engine, m_locator);
-    Q_UNUSED(output)
+    registerConsole(engine, output);
 }
 
 void CarouselScriptEngineConfigurationDelegate::configureExtension(IServiceLocator *locator, QJSEngine *engine, IScriptExtension *extension)
@@ -105,6 +106,19 @@ void CarouselScriptEngineConfigurationDelegate::configureServiceLocator(QJSEngin
     ServiceLocatorWrapper *wrapper = new ServiceLocatorWrapper(locator); // engine takes ownership: JavaScriptOwnership
     QJSValue value = engine->newQObject(wrapper);
     engine->globalObject().setProperty("serviceLocator", value);
+}
+
+void CarouselScriptEngineConfigurationDelegate::registerConsole(QJSEngine *engine, IOutputHandler *output)
+{
+    ConsoleJsObject* console = new ConsoleJsObject(*output);
+    QJSValue jsConsole = engine->newQObject(console);
+    if (jsConsole.isError())
+    {
+        Log.w(QString("Can't register console: %1").arg(jsConsole.toString()));
+        return;
+    }
+
+    engine->globalObject().setProperty("console", jsConsole);
 }
 
 QJSValue CarouselScriptEngineConfigurationDelegate::findValue(QJSEngine *engine, const QString& name)
