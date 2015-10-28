@@ -6,8 +6,9 @@ SUBDIRS += \
     undo \
     componentsystemui \
     qmlscripting \
-    jsscripting \
-    jsscriptingui \
+    qmlscriptingui \
+#    jsscripting \          deprecated, since QtScript module is deprecated at Qt 5.5
+#    jsscriptingui \        deprecated, since QtScript module is deprecated at Qt 5.5
     persistence \
     persistenceui \
 

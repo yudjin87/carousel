@@ -1,0 +1,10 @@
+ <component name="org.carousel.QmlScriptingUI" shortName="QmlScriptingUI">
+     <version>1.0</version>
+     <productName>QmlScriptingUI</productName>
+     <provider>Carousel</provider>
+     <parents>
+         <parentComponent name="org.carousel.QmlScripting" version="1.0"/>
+         <parentComponent name="org.carousel.Interactivity" version="1.0"/>
+     </parents>
+     <location>./org.carousel.QmlScriptingUI</location>
+ </component>

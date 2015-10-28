@@ -15,7 +15,7 @@ What is a composite application?
 <li>@ref ManagingDependenciesBetweenTheComponents "Managing dependencies between the components" (object factories);</li>
 <li>@ref LifeTimePhases "Life-time phases" (how control some classes usage);</li>
 <li>@ref PresentationAndModelResponsibilities "Presentation and model responsibilities and organization";</li>
-<li>@ref JsScripting "JavaScript support";</li>
+<li>@ref QmlScripting "JavaScript support";</li>
 <li>@ref UnitTesting "Unit testing";</li>
 <li>@ref Examples "Examples";</li>
 </ol>
@@ -49,24 +49,24 @@ Another way to communicate between loosely coupled components is a mechanism bas
 
 Use commands, based on business logic (like InstallComponentsCommand or EnableComponentCommand), in response of the user actions, such as clicking on a command trigger (for example, menu item or dialog/tool bar button).
 You could instantiate required command using service locator in response on the specific slot (or other user input handler), setup it according to the user inputs and execute it through undo stack.
-@todo example. 
+@todo example.
 
 @subsection ManagingDependenciesBetweenTheComponents Managing dependencies between the components (object factories)
 
-Shared services work good when components just want to communicate each other. But only communication is not enough, components have to instantiate objects from other components. Object factories go here to avoid tight coupling. Using factories you can map interface type to the concrete type or, even, register a factory method for the specific interface type. Then, when we have such factories it is easier to instantiate some object with large amount of nested dependencies. It allows us to create object without any knowing of it dependencies and create ready-to-user object. 
+Shared services work good when components just want to communicate each other. But only communication is not enough, components have to instantiate objects from other components. Object factories go here to avoid tight coupling. Using factories you can map interface type to the concrete type or, even, register a factory method for the specific interface type. Then, when we have such factories it is easier to instantiate some object with large amount of nested dependencies. It allows us to create object without any knowing of it dependencies and create ready-to-user object.
 
 @todo code for register a factory method for the specific interface type.
 
-Also, all types could be remapped by other components (for example, dialogs could be easily redesigned and remapped), and old code should not be changed. 
+Also, all types could be remapped by other components (for example, dialogs could be easily redesigned and remapped), and old code should not be changed.
 It also allows creating and using objects from the scripts. For example, you can create InstallComponentsCommand command inside the script, set up it properly and push it to the undo stack.
 
 @subsection LifeTimePhases Life-time phases (how control some classes usage)
 
-Architecture should also declare a set of limitations: how, when and where can we use some of the described above mechanisms. Service locator and objects factory could be dangerous in using, when you decide that it is very convenient to have a reference to the locator in every object. Main purpose of the locator is to fill-in dependencies between components during their starting time. So I’ve introduced the concept of life-time phases. 
+Architecture should also declare a set of limitations: how, when and where can we use some of the described above mechanisms. Service locator and objects factory could be dangerous in using, when you decide that it is very convenient to have a reference to the locator in every object. Main purpose of the locator is to fill-in dependencies between components during their starting time. So I’ve introduced the concept of life-time phases.
 
 @image html LifeTimePhases.png
 
-There are two main phases: configuration and execution. An execution phase is an ordinal application state, in which you response on the user interaction. It is almost does not matter whether that application is composite or not. So on the execution phase I try to limit service locator using, because main controllers, handlers and other classes are created, configured, dependencies are injected, UI and domain model trees are built and so on. 
+There are two main phases: configuration and execution. An execution phase is an ordinal application state, in which you response on the user interaction. It is almost does not matter whether that application is composite or not. So on the execution phase I try to limit service locator using, because main controllers, handlers and other classes are created, configured, dependencies are injected, UI and domain model trees are built and so on.
 
 But during the configuration phase service locator is actively used by the components:
 
@@ -82,7 +82,7 @@ All other domain objects should not have a dependency from the service locator, 
 
 @subsection RegistrationPhase Registration phase
 
-A sub-class of Bootloader starts registration and configuration phases. 
+A sub-class of Bootloader starts registration and configuration phases.
 It creates and registers service locator itself and widely spread services, like logger façade, component management and, optionally, main window for the GUI applications. It is implemented as a sequence of pairs “create<>() - configure<>()” methods, and each of them could be overridden. For example, to use your own logger system it is just needed to override createLoggerEngine() method.
 
 To start new application you also should to override createComponentProvider() or configureComponentProvider() method to determine way in which your application will be populated by the components. For example, here is a component provider which will load components from the "./components" directory at the start-time and which also has four built-in components, configured statically at the compile-time:
@@ -118,9 +118,9 @@ Then you can use, e.g. InstallComponentsCommand, right from scripting or as a re
 layer could has a dependency from the service locator to use registered factories). Moreover, someone could re-register ComponentsDialog to show new dialog without
 any cahnges in the old code.
 
-@subsection PresentationAndModelResponsibilities Presentation and model responsibilities and organization 
+@subsection PresentationAndModelResponsibilities Presentation and model responsibilities and organization
 
-Every component could extend UI with widgets, dialogs and operations (QAction like – menu items, toolbar buttons), so one common approach is needed to control all that stuff. 
+Every component could extend UI with widgets, dialogs and operations (QAction like – menu items, toolbar buttons), so one common approach is needed to control all that stuff.
 
 Dialogs creating.
 IDialogService is responsible for (non-)modal dialog showing: it can create and show dialog for registered @a Model type. The specified model will be passed to the dialog, so client code just has to instantiate Model object, without any knowing about concrete type about dialog widget:
@@ -151,9 +151,9 @@ Interaction approach (menu items and tool handlers):
 <li>New menu items and toolbars with tools and operations can be registered and added to the GUI using IMenuCatalog, IOperationCatalog and IToolBarCatalog;</li>
 </ol>
 
-@subsection JsScripting JavaScript support
+@subsection QmlScripting JavaScript support
 Since all important services are registered in the IServiceLocator, it is possible to get reference to the specific servce from the JavaScript, using
-JsScriptingComponent. Also you can use JsScriptingUIComponent, if you need ScriptConsoleView or simple script IDE.
+QmlScriptingComponent. Also you can use QmlScriptingUIComponent, if you need ScriptConsoleView or simple script IDE.
 
 @todo continue, + examples
 

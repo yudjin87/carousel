@@ -28,7 +28,7 @@
 
 #include <carousel/logging/LoggerFacade.h>
 
-#include <QtQml/QQmlEngine>
+#include <QtQml/QJSEngine>
 
 namespace
 {
