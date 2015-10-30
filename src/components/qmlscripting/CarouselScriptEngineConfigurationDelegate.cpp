@@ -34,6 +34,7 @@
 #include "components/qmlscripting/IScriptingService.h"
 #include "components/qmlscripting/ConsoleJsObject.h"
 #include "components/qmlscripting/IncludeJsObject.h"
+#include "components/qmlscripting/ExploreJsObject.h"
 #include "components/qmlscripting/QmlComponentManager.h"
 
 #include <carousel/componentsystem/IComponent.h>
@@ -47,7 +48,6 @@
 #include <QtCore/QEventLoop>
 #include <QtCore/QPoint>
 #include <QtCore/QTimer>
-#include <QtCore/QList>
 #include <QtQml/QtQml>
 #include <QtQml/QJSEngine>
 #include <QtQml/QJSValueIterator>
@@ -55,14 +55,6 @@
 namespace
 {
 static LoggerFacade Log = LoggerFacade::createLogger("...ScriptConfigurationDelegate");
-
-static const QList<QString> qobjectProperties = {
-    "objectName",
-    "destroyed(QObject*)",
-    "destroyed()",
-    "deleteLater()",
-    "objectNameChanged(QString)"
-    };
 
 } // namespace
 
@@ -101,6 +93,7 @@ void CarouselScriptEngineConfigurationDelegate::configureDefaults(QJSEngine *eng
     configureServiceLocator(engine, m_locator);
     registerConsole(engine, output);
     registerIncludeFunc(engine);
+    registerExploreFunc(engine, output);
 }
 
 void CarouselScriptEngineConfigurationDelegate::configureExtension(IServiceLocator *locator, QJSEngine *engine, IScriptExtension *extension)
@@ -157,6 +150,26 @@ void CarouselScriptEngineConfigurationDelegate::registerConsole(QJSEngine *engin
     engine->globalObject().setProperty("console", jsConsole);
 }
 
+void CarouselScriptEngineConfigurationDelegate::registerExploreFunc(QJSEngine *engine, IOutputHandler *output)
+{
+    ExploreJsObject* exploreObj = new ExploreJsObject(*output, *engine); // engine takes ownership: JavaScriptOwnership
+    QJSValue jsExploreObj = engine->newQObject(exploreObj);
+    if (jsExploreObj.isError())
+    {
+        Log.w(QString("Can't register explore object: %1").arg(jsExploreObj.toString()));
+        return;
+    }
+
+    engine->globalObject().setProperty("__explore__", jsExploreObj);
+
+    QJSValue jsExploreInstance = engine->evaluate("function explore(instance) {__explore__.explore(instance)}");
+    if (jsExploreInstance.isError())
+    {
+        Log.w(QString("Can't register explore(instance) function: %1").arg(jsExploreInstance.toString()));
+        return;
+    }
+}
+
 void CarouselScriptEngineConfigurationDelegate::registerIncludeFunc(QJSEngine *engine)
 {
     IncludeJsObject* includeObj = new IncludeJsObject(*engine); // engine takes ownership: JavaScriptOwnership
@@ -168,7 +181,7 @@ void CarouselScriptEngineConfigurationDelegate::registerIncludeFunc(QJSEngine *e
     }
 
     engine->globalObject().setProperty("__include__", jsIncludeObj);
-    QJSValue jsInclude = engine->evaluate("function include(f) {__include__.include(f)}");
+    QJSValue jsInclude = engine->evaluate("function include(jsFilePath) {__include__.include(jsFilePath)}");
     if (jsInclude.isError())
     {
         Log.w(QString("Can't register include function: %1").arg(jsInclude.toString()));

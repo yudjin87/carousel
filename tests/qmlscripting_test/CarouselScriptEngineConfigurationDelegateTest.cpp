@@ -112,39 +112,39 @@ void CarouselScriptEngineConfigurationDelegateTest::configureDefaults_shouldAddI
     QCOMPARE(value, 111);
 }
 
-//void CarouselScriptEngineConfigurationDelegateTest::explore_shouldPrintAllGlobals()
-//{
-//    ServiceLocator locator; QJSEngine engine;
-//    CarouselScriptEngineConfigurationDelegate delegate(&locator);
+void CarouselScriptEngineConfigurationDelegateTest::explore_shouldPrintAllGlobals()
+{
+    ServiceLocator locator; QJSEngine engine;
+    CarouselScriptEngineConfigurationDelegate delegate(&locator);
 
-//    MockOutputHandler output;
-//    delegate.configureDefaults(&engine, &output);
-//    engine.evaluate("explore()");
+    MockOutputHandler output;
+    delegate.configureDefaults(&engine, &output);
+    engine.evaluate("explore()");
 
-//    QVERIFY(!output.messages.empty());
-//    QVERIFY(output.messages.contains("Math (instance)"));
-//    QVERIFY(output.messages.contains("explore()"));
-//    QVERIFY(output.messages.contains("NaN"));
-//}
+    QVERIFY(!output.messages.empty());
+    QVERIFY(output.messages.contains("Math (instance)"));
+    QVERIFY(output.messages.contains("explore()"));
+    QVERIFY(output.messages.contains("NaN"));
+    QVERIFY(!output.messages.contains("__explore__ (instance)"));
+}
 
-//void CarouselScriptEngineConfigurationDelegateTest::explore_shouldPrintVariableMembers()
-//{
-//    ServiceLocator locator; QJSEngine engine;
-//    CarouselScriptEngineConfigurationDelegate delegate(&locator);
+void CarouselScriptEngineConfigurationDelegateTest::explore_shouldPrintVariableMembers()
+{
+    ServiceLocator locator; QJSEngine engine;
+    CarouselScriptEngineConfigurationDelegate delegate(&locator);
 
-//    MockOutputHandler output;
-//    delegate.configureDefaults(&engine, &output);
-//    engine.evaluate("explore(serviceLocator)");
+    MockOutputHandler output;
+    delegate.configureDefaults(&engine, &output);
+    engine.evaluate("explore(serviceLocator)");
 
-//    QVERIFY(!output.messages.empty());
-//    QVERIFY(!output.messages.contains("objectName"));
-//    QVERIFY(!output.messages.contains("destroyed(QObject*)"));
-//    QVERIFY(!output.messages.contains("destroyed()"));
-//    QVERIFY(!output.messages.contains("deleteLater()"));
-//    QVERIFY(!output.messages.contains("objectNameChanged(QString)"));
+    QCOMPARE(output.messages.size(), 4);
+    QVERIFY(!output.messages.contains("objectName"));
+    QVERIFY(!output.messages.contains("destroyed"));
+    QVERIFY(!output.messages.contains("objectNameChanged"));
 
-//    QVERIFY(output.messages.contains("locate(QString)"));
-//    QVERIFY(output.messages.contains("build(QString)"));
-//    QVERIFY(output.messages.contains("build(QString,bool)"));
-//}
+    QVERIFY(output.messages.contains("locate"));
+    QVERIFY(output.messages.contains("build"));
+    QVERIFY(output.messages.contains("build"));
+    QVERIFY(output.messages.contains("services"));
+}
 

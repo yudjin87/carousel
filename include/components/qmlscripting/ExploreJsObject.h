@@ -25,24 +25,30 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #pragma once
+
+#include <components/qmlscripting/qmlscripting_global.h>
+
 #include <QtCore/QObject>
 
-class CarouselScriptEngineConfigurationDelegateTest : public QObject
+class IOutputHandler;
+class QJSValue;
+class QJSEngine;
+
+/*!
+ * @brief
+ */
+class QML_SCRIPTING_API ExploreJsObject : public QObject
 {
     Q_OBJECT
 public:
-    explicit CarouselScriptEngineConfigurationDelegateTest(QObject *parent = nullptr);
+    explicit ExploreJsObject(IOutputHandler& outputHandler, QJSEngine &engine, QObject *parent = nullptr);
 
-private slots:
-    void configureComponent_shouldConfigureComponentIfItHasScriptExtension();
-    void configureComponent_shouldNotCallConfigureIfComponentWasNotStarted();
-    void configureComponent_shouldNotThrowIfComponentHasNoScriptExtension();
-    void configureDefaults_shouldAddServiceLocatorObjectToEngine();
-    void configureDefaults_shouldAddIncludeFunctionToEngine();
-    void explore_shouldPrintAllGlobals();
-    void explore_shouldPrintVariableMembers();
+public slots:
+    void explore();
+    void explore(const QJSValue& instance);
 
 private:
-    QString m_testScriptPath;
+    QJSEngine &m_engine;
+    IOutputHandler& m_outputHandler;
 };
 
