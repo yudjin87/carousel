@@ -3,6 +3,9 @@ PROJECT_HEADERS = $$HPP_SOURCE_TREE/components/qmlscripting
 
 HEADERS += \
     $$PROJECT_HEADERS/CarouselScriptEngineConfigurationDelegate.h \
+    $$PROJECT_HEADERS/ConsoleJsObject.h \
+    $$PROJECT_HEADERS/ExploreJsObject.h \
+    $$PROJECT_HEADERS/IncludeJsObject.h \
     $$PROJECT_HEADERS/IOutputHandler.h \
     $$PROJECT_HEADERS/IScriptCollection.h \
     $$PROJECT_HEADERS/IScriptConsole.h \
@@ -11,6 +14,7 @@ HEADERS += \
     $$PROJECT_HEADERS/IScriptExtension.h \
     $$PROJECT_HEADERS/IScriptingService.h \
     $$PROJECT_HEADERS/IScriptUnit.h \
+    $$PROJECT_HEADERS/QmlComponentManager.h \
     $$PROJECT_HEADERS/qmlscripting_global.h \
     $$PROJECT_HEADERS/QmlScriptingComponent.h \
     $$PROJECT_HEADERS/ScriptCollection.h \
@@ -19,14 +23,14 @@ HEADERS += \
     $$PROJECT_HEADERS/ScriptUnit.h \
     $$PROJECT_HEADERS/ServiceLocatorWrapper.h \
     $$PROJECT_HEADERS/SimpleCompleter.h \
-    $$PROJECT_HEADERS/ConsoleJsObject.h \
-    $$PROJECT_HEADERS/QmlComponentManager.h \
-    $$PROJECT_HEADERS/IncludeJsObject.h \
     $$PROJECT_HEADERS/WaitJsObject.h \
-    $$PROJECT_HEADERS/ExploreJsObject.h \
 
 SOURCES += \
     $$PROJECT_SOURCES/CarouselScriptEngineConfigurationDelegate.cpp \
+    $$PROJECT_SOURCES/ConsoleJsObject.cpp \
+    $$PROJECT_SOURCES/ExploreJsObject.cpp \
+    $$PROJECT_SOURCES/IncludeJsObject.cpp \
+    $$PROJECT_SOURCES/QmlComponentManager.cpp \
     $$PROJECT_SOURCES/QmlScriptingComponent.cpp \
     $$PROJECT_SOURCES/ScriptCollection.cpp \
     $$PROJECT_SOURCES/ScriptConsole.cpp \
@@ -34,10 +38,6 @@ SOURCES += \
     $$PROJECT_SOURCES/ScriptUnit.cpp \
     $$PROJECT_SOURCES/ServiceLocatorWrapper.cpp \
     $$PROJECT_SOURCES/SimpleCompleter.cpp \
-    $$PROJECT_SOURCES/ConsoleJsObject.cpp \
-    $$PROJECT_SOURCES/QmlComponentManager.cpp \
-    $$PROJECT_SOURCES/IncludeJsObject.cpp \
-    $$PROJECT_SOURCES/ExploreJsObject.cpp \
     $$PROJECT_SOURCES/WaitJsObject.cpp \
 
 OTHER_FILES += \

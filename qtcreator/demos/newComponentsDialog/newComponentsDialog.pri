@@ -10,6 +10,6 @@ SOURCES += \
     $$DEMO_PROJECT_SOURCES/NewDialog.cpp \
 
 OTHER_FILES += \
-    $$DEMO_PROJECT_SOURCES/org.carousel.demos.NewComponentsDialog.definition
+    $$DEMO_PROJECT_SOURCES/org.carousel.demos.NewComponentsDialog.definition \
 
 

@@ -8,42 +8,52 @@ include(cmake/target_utils)
 ######################################################################
 # Sources
 set(__SOURCES
-    ${CRSL_TARGET_SOURCES}/CarouselScriptEngineConfigurationDelegate.cpp
-    ${CRSL_TARGET_SOURCES}/QmlScriptingComponent.cpp
-    ${CRSL_TARGET_SOURCES}/ScriptCollection.cpp
-    ${CRSL_TARGET_SOURCES}/ScriptConsole.cpp
-    ${CRSL_TARGET_SOURCES}/ScriptingService.cpp
-    ${CRSL_TARGET_SOURCES}/ScriptUnit.cpp
-    ${CRSL_TARGET_SOURCES}/ServiceLocatorWrapper.cpp
-    ${CRSL_TARGET_SOURCES}/SimpleCompleter.cpp
+    ${CRSL_TARGET_SOURCES}/CarouselScriptEngineConfigurationDelegate.cpp 
+    ${CRSL_TARGET_SOURCES}/ConsoleJsObject.cpp 
+    ${CRSL_TARGET_SOURCES}/ExploreJsObject.cpp 
+    ${CRSL_TARGET_SOURCES}/IncludeJsObject.cpp 
+    ${CRSL_TARGET_SOURCES}/QmlComponentManager.cpp 
+    ${CRSL_TARGET_SOURCES}/QmlScriptingComponent.cpp 
+    ${CRSL_TARGET_SOURCES}/ScriptCollection.cpp 
+    ${CRSL_TARGET_SOURCES}/ScriptConsole.cpp 
+    ${CRSL_TARGET_SOURCES}/ScriptingService.cpp 
+    ${CRSL_TARGET_SOURCES}/ScriptUnit.cpp 
+    ${CRSL_TARGET_SOURCES}/ServiceLocatorWrapper.cpp 
+    ${CRSL_TARGET_SOURCES}/SimpleCompleter.cpp 
+    ${CRSL_TARGET_SOURCES}/WaitJsObject.cpp 
 )
 
 ######################################################################
 # Headers
 set(__HEADERS
-    ${CRSL_TARGET_HEADERS}/CarouselScriptEngineConfigurationDelegate.h
-    ${CRSL_TARGET_HEADERS}/IOutputHandler.h
-    ${CRSL_TARGET_HEADERS}/IScriptCollection.h
-    ${CRSL_TARGET_HEADERS}/IScriptConsole.h
-    ${CRSL_TARGET_HEADERS}/IScriptEngineConfigurationDelegate.h
-    ${CRSL_TARGET_HEADERS}/IScriptEngineFactory.h
-    ${CRSL_TARGET_HEADERS}/IScriptExtension.h
-    ${CRSL_TARGET_HEADERS}/IScriptingService.h
-    ${CRSL_TARGET_HEADERS}/IScriptUnit.h
-    ${CRSL_TARGET_HEADERS}/qmlscripting_global.h
-    ${CRSL_TARGET_HEADERS}/QmlScriptingComponent.h
-    ${CRSL_TARGET_HEADERS}/ScriptCollection.h
-    ${CRSL_TARGET_HEADERS}/ScriptConsole.h
-    ${CRSL_TARGET_HEADERS}/ScriptingService.h
-    ${CRSL_TARGET_HEADERS}/ScriptUnit.h
-    ${CRSL_TARGET_HEADERS}/ServiceLocatorWrapper.h
-    ${CRSL_TARGET_HEADERS}/SimpleCompleter.h
+    ${CRSL_TARGET_HEADERS}/CarouselScriptEngineConfigurationDelegate.h 
+    ${CRSL_TARGET_HEADERS}/ConsoleJsObject.h 
+    ${CRSL_TARGET_HEADERS}/ExploreJsObject.h 
+    ${CRSL_TARGET_HEADERS}/IncludeJsObject.h 
+    ${CRSL_TARGET_HEADERS}/IOutputHandler.h 
+    ${CRSL_TARGET_HEADERS}/IScriptCollection.h 
+    ${CRSL_TARGET_HEADERS}/IScriptConsole.h 
+    ${CRSL_TARGET_HEADERS}/IScriptEngineConfigurationDelegate.h 
+    ${CRSL_TARGET_HEADERS}/IScriptEngineFactory.h 
+    ${CRSL_TARGET_HEADERS}/IScriptExtension.h 
+    ${CRSL_TARGET_HEADERS}/IScriptingService.h 
+    ${CRSL_TARGET_HEADERS}/IScriptUnit.h 
+    ${CRSL_TARGET_HEADERS}/QmlComponentManager.h 
+    ${CRSL_TARGET_HEADERS}/qmlscripting_global.h 
+    ${CRSL_TARGET_HEADERS}/QmlScriptingComponent.h 
+    ${CRSL_TARGET_HEADERS}/ScriptCollection.h 
+    ${CRSL_TARGET_HEADERS}/ScriptConsole.h 
+    ${CRSL_TARGET_HEADERS}/ScriptingService.h 
+    ${CRSL_TARGET_HEADERS}/ScriptUnit.h 
+    ${CRSL_TARGET_HEADERS}/ServiceLocatorWrapper.h 
+    ${CRSL_TARGET_HEADERS}/SimpleCompleter.h 
+    ${CRSL_TARGET_HEADERS}/WaitJsObject.h 
 )
 
 ######################################################################
 # Definitions
 set(__OTHER_FILES
-    ${CRSL_TARGET_SOURCES}/org.carousel.QmlScripting.definition
+    ${CRSL_TARGET_SOURCES}/org.carousel.QmlScripting.definition 
 )
 
 ######################################################################
