@@ -21,6 +21,7 @@ HEADERS += \
     $$PROJECT_HEADERS/SimpleCompleter.h \
     $$PROJECT_HEADERS/ConsoleJsObject.h \
     $$PROJECT_HEADERS/QmlComponentManager.h \
+    $$PROJECT_HEADERS/IncludeJsObject.h \
 
 SOURCES += \
     $$PROJECT_SOURCES/CarouselScriptEngineConfigurationDelegate.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
     $$PROJECT_SOURCES/SimpleCompleter.cpp \
     $$PROJECT_SOURCES/ConsoleJsObject.cpp \
     $$PROJECT_SOURCES/QmlComponentManager.cpp \
+    $$PROJECT_SOURCES/IncludeJsObject.cpp \
 
 OTHER_FILES += \
     $$PROJECT_SOURCES/org.carousel.QmlScripting.definition \

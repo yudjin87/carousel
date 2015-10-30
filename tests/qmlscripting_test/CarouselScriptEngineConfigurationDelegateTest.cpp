@@ -93,3 +93,58 @@ void CarouselScriptEngineConfigurationDelegateTest::configureDefaults_shouldAddS
 
     QVERIFY(defaultLocator.toQObject() != nullptr);
 }
+
+void CarouselScriptEngineConfigurationDelegateTest::configureDefaults_shouldAddIncludeFunctionToEngine()
+{
+    ServiceLocator locator; QJSEngine engine;
+    CarouselScriptEngineConfigurationDelegate delegate(&locator);
+
+    MockOutputHandler output;
+    delegate.configureDefaults(&engine, &output);
+    QJSValue result = engine.evaluate(QString("include(\"%1\");").arg(m_testScriptPath));
+    QVERIFY(!result.isError());
+
+    QJSValue includedScriptValue = engine.globalObject().property("a");
+    QVERIFY(!includedScriptValue.isUndefined());
+
+    int value = includedScriptValue.toInt();
+
+    QCOMPARE(value, 111);
+}
+
+//void CarouselScriptEngineConfigurationDelegateTest::explore_shouldPrintAllGlobals()
+//{
+//    ServiceLocator locator; QJSEngine engine;
+//    CarouselScriptEngineConfigurationDelegate delegate(&locator);
+
+//    MockOutputHandler output;
+//    delegate.configureDefaults(&engine, &output);
+//    engine.evaluate("explore()");
+
+//    QVERIFY(!output.messages.empty());
+//    QVERIFY(output.messages.contains("Math (instance)"));
+//    QVERIFY(output.messages.contains("explore()"));
+//    QVERIFY(output.messages.contains("NaN"));
+//}
+
+//void CarouselScriptEngineConfigurationDelegateTest::explore_shouldPrintVariableMembers()
+//{
+//    ServiceLocator locator; QJSEngine engine;
+//    CarouselScriptEngineConfigurationDelegate delegate(&locator);
+
+//    MockOutputHandler output;
+//    delegate.configureDefaults(&engine, &output);
+//    engine.evaluate("explore(serviceLocator)");
+
+//    QVERIFY(!output.messages.empty());
+//    QVERIFY(!output.messages.contains("objectName"));
+//    QVERIFY(!output.messages.contains("destroyed(QObject*)"));
+//    QVERIFY(!output.messages.contains("destroyed()"));
+//    QVERIFY(!output.messages.contains("deleteLater()"));
+//    QVERIFY(!output.messages.contains("objectNameChanged(QString)"));
+
+//    QVERIFY(output.messages.contains("locate(QString)"));
+//    QVERIFY(output.messages.contains("build(QString)"));
+//    QVERIFY(output.messages.contains("build(QString,bool)"));
+//}
+

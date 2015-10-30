@@ -20,29 +20,29 @@ int main(int argc, char *argv[])
     NullLogger log;
     LoggerFacade::installLoggerEngineCreator(&log);
 
-    ServiceLocatorWrapperTest serviceLocatorWrapperTest;
-    QTest::qExec(&serviceLocatorWrapperTest, argc, argv);
+//    ServiceLocatorWrapperTest serviceLocatorWrapperTest;
+//    QTest::qExec(&serviceLocatorWrapperTest, argc, argv);
 
-    ScriptEngineTest scriptEngineTest;
-    QTest::qExec(&scriptEngineTest, argc, argv);
+//    ScriptEngineTest scriptEngineTest;
+//    QTest::qExec(&scriptEngineTest, argc, argv);
 
-    ScriptConsoleTest scriptConsoleTest;
-    QTest::qExec(&scriptConsoleTest, argc, argv);
+//    ScriptConsoleTest scriptConsoleTest;
+//    QTest::qExec(&scriptConsoleTest, argc, argv);
 
-    ScriptingServiceTest scriptServiceTest;
-    QTest::qExec(&scriptServiceTest, argc, argv);
+//    ScriptingServiceTest scriptServiceTest;
+//    QTest::qExec(&scriptServiceTest, argc, argv);
 
-    ScriptUnitTest scriptUnitTest;
-    QTest::qExec(&scriptUnitTest, argc, argv);
+//    ScriptUnitTest scriptUnitTest;
+//    QTest::qExec(&scriptUnitTest, argc, argv);
 
-    ScriptCollectionTest scriptManagerTest;
-    QTest::qExec(&scriptManagerTest, argc, argv);
+//    ScriptCollectionTest scriptManagerTest;
+//    QTest::qExec(&scriptManagerTest, argc, argv);
 
     CarouselScriptEngineConfigurationDelegateTest carouselScriptEngineConfigurationDelegateTest;
     QTest::qExec(&carouselScriptEngineConfigurationDelegateTest, argc, argv);
 
-    SimpleCompleterTest simpleCompleterTest;
-    QTest::qExec(&simpleCompleterTest, argc, argv);
+//    SimpleCompleterTest simpleCompleterTest;
+//    QTest::qExec(&simpleCompleterTest, argc, argv);
 
     return 0;
 }

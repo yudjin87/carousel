@@ -77,6 +77,7 @@ protected:
     virtual void configureExtension(IServiceLocator *locator, QJSEngine *engine, IScriptExtension *extension);
     virtual void configureServiceLocator(QJSEngine *engine, IServiceLocator *locator);
     virtual void registerConsole(QJSEngine *engine, IOutputHandler *output);
+    virtual void registerIncludeFunc(QJSEngine *engine);
 
 private:
     Q_DISABLE_COPY(CarouselScriptEngineConfigurationDelegate)

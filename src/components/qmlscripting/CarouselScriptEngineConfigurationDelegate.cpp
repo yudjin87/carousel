@@ -33,6 +33,7 @@
 #include "components/qmlscripting/ServiceLocatorWrapper.h"
 #include "components/qmlscripting/IScriptingService.h"
 #include "components/qmlscripting/ConsoleJsObject.h"
+#include "components/qmlscripting/IncludeJsObject.h"
 #include "components/qmlscripting/QmlComponentManager.h"
 
 #include <carousel/componentsystem/IComponent.h>
@@ -99,6 +100,7 @@ void CarouselScriptEngineConfigurationDelegate::configureDefaults(QJSEngine *eng
 {
     configureServiceLocator(engine, m_locator);
     registerConsole(engine, output);
+    registerIncludeFunc(engine);
 }
 
 void CarouselScriptEngineConfigurationDelegate::configureExtension(IServiceLocator *locator, QJSEngine *engine, IScriptExtension *extension)
@@ -119,7 +121,7 @@ void CarouselScriptEngineConfigurationDelegate::configureServiceLocator(QJSEngin
     engine->globalObject().setProperty("serviceLocator", jsLocatorWrapper);
 
     //-------
-    QmlComponentManager* manager = new QmlComponentManager(*locator);
+    QmlComponentManager* manager = new QmlComponentManager(*locator); // engine takes ownership: JavaScriptOwnership
     const QJSValue jsManagerWrapper = engine->newQObject(manager);
     if (jsManagerWrapper.isError())
     {
@@ -144,7 +146,7 @@ void CarouselScriptEngineConfigurationDelegate::configureServiceLocator(QJSEngin
 
 void CarouselScriptEngineConfigurationDelegate::registerConsole(QJSEngine *engine, IOutputHandler *output)
 {
-    ConsoleJsObject* console = new ConsoleJsObject(*output);
+    ConsoleJsObject* console = new ConsoleJsObject(*output); // engine takes ownership: JavaScriptOwnership
     QJSValue jsConsole = engine->newQObject(console);
     if (jsConsole.isError())
     {
@@ -153,6 +155,25 @@ void CarouselScriptEngineConfigurationDelegate::registerConsole(QJSEngine *engin
     }
 
     engine->globalObject().setProperty("console", jsConsole);
+}
+
+void CarouselScriptEngineConfigurationDelegate::registerIncludeFunc(QJSEngine *engine)
+{
+    IncludeJsObject* includeObj = new IncludeJsObject(*engine); // engine takes ownership: JavaScriptOwnership
+    QJSValue jsIncludeObj = engine->newQObject(includeObj);
+    if (jsIncludeObj.isError())
+    {
+        Log.w(QString("Can't register include object: %1").arg(jsIncludeObj.toString()));
+        return;
+    }
+
+    engine->globalObject().setProperty("__include__", jsIncludeObj);
+    QJSValue jsInclude = engine->evaluate("function include(f) {__include__.include(f)}");
+    if (jsInclude.isError())
+    {
+        Log.w(QString("Can't register include function: %1").arg(jsInclude.toString()));
+        return;
+    }
 }
 
 QJSValue CarouselScriptEngineConfigurationDelegate::findValue(QJSEngine *engine, const QString& name)
