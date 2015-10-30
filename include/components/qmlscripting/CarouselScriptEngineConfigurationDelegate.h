@@ -79,6 +79,7 @@ protected:
     virtual void registerConsole(QJSEngine *engine, IOutputHandler *output);
     virtual void registerExploreFunc(QJSEngine *engine, IOutputHandler *output);
     virtual void registerIncludeFunc(QJSEngine *engine);
+    virtual void registerWaitFunc(QJSEngine *engine);
 
 private:
     Q_DISABLE_COPY(CarouselScriptEngineConfigurationDelegate)

@@ -15,3 +15,5 @@ newScriptUnit.run();
 // Console
 var scriptConsole = scriptingService.console;
 scriptConsole.execCommand("console.log(\"Hello, new world!\")");
+wait(3000);
+scriptConsole.execCommand("console.log(\"And again\")");

@@ -35,6 +35,7 @@
 #include "components/qmlscripting/ConsoleJsObject.h"
 #include "components/qmlscripting/IncludeJsObject.h"
 #include "components/qmlscripting/ExploreJsObject.h"
+#include "components/qmlscripting/WaitJsObject.h"
 #include "components/qmlscripting/QmlComponentManager.h"
 
 #include <carousel/componentsystem/IComponent.h>
@@ -92,6 +93,7 @@ void CarouselScriptEngineConfigurationDelegate::configureDefaults(QJSEngine *eng
 {
     configureServiceLocator(engine, m_locator);
     registerConsole(engine, output);
+    registerWaitFunc(engine);
     registerIncludeFunc(engine);
     registerExploreFunc(engine, output);
 }
@@ -185,6 +187,25 @@ void CarouselScriptEngineConfigurationDelegate::registerIncludeFunc(QJSEngine *e
     if (jsInclude.isError())
     {
         Log.w(QString("Can't register include function: %1").arg(jsInclude.toString()));
+        return;
+    }
+}
+
+void CarouselScriptEngineConfigurationDelegate::registerWaitFunc(QJSEngine *engine)
+{
+    WaitJsObject* waitObj = new WaitJsObject(*engine); // engine takes ownership: JavaScriptOwnership
+    QJSValue jsWaitObj = engine->newQObject(waitObj);
+    if (jsWaitObj.isError())
+    {
+        Log.w(QString("Can't register wait object: %1").arg(jsWaitObj.toString()));
+        return;
+    }
+
+    engine->globalObject().setProperty("__wait__", jsWaitObj);
+    QJSValue jsWait = engine->evaluate("function wait(millisecs) {__wait__.wait(millisecs)}");
+    if (jsWait.isError())
+    {
+        Log.w(QString("Can't register wait function: %1").arg(jsWait.toString()));
         return;
     }
 }
