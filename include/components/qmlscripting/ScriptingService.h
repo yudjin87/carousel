@@ -77,6 +77,8 @@ public:
 
     ~ScriptingService();
 
+    void prepareConsole();
+
     /*!
      * @details
      *   Gets the script console.

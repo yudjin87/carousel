@@ -47,7 +47,7 @@ static LoggerFacade Log = LoggerFacade::createLogger("ScriptingService");
 ScriptingService::ScriptingService(IServiceLocator *locator, IComponentManager *manager, QObject *parent)
     : m_componentManager(manager)
     , m_scriptExtensionConfigurationDelegate(new CarouselScriptEngineConfigurationDelegate(locator, this))
-    , m_console(new ScriptConsole(createEngine()))
+    , m_console(nullptr)
     , m_scripts(new ScriptCollection(this, this))
     , m_startScript()
 {
@@ -58,7 +58,7 @@ ScriptingService::ScriptingService(IServiceLocator *locator, IComponentManager *
 ScriptingService::ScriptingService(IServiceLocator *locator, IComponentManager *manager, const QString &startScript, QObject *parent)
     : m_componentManager(manager)
     , m_scriptExtensionConfigurationDelegate(new CarouselScriptEngineConfigurationDelegate(locator, this))
-    , m_console(new ScriptConsole(createEngine()))
+    , m_console(nullptr)
     , m_scripts(new ScriptCollection(this, this))
     , m_startScript(startScript)
 {
@@ -69,6 +69,12 @@ ScriptingService::ScriptingService(IServiceLocator *locator, IComponentManager *
 
 ScriptingService::~ScriptingService()
 {
+}
+
+void ScriptingService::prepareConsole()
+{
+    delete m_console;
+    m_console = new ScriptConsole(createEngine());
 }
 
 IScriptConsole *ScriptingService::console()

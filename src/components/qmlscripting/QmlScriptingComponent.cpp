@@ -66,8 +66,9 @@ void QmlScriptingComponent::onShutdown(IServiceLocator *serviceLocator)
 bool QmlScriptingComponent::onStartup(IServiceLocator *serviceLocator)
 {
     IComponentManager *manager = serviceLocator->locate<IComponentManager>();
-    IScriptingService *service = new ScriptingService(serviceLocator, manager, getStartedScriptFromAgrs());
+    ScriptingService *service = new ScriptingService(serviceLocator, manager, getStartedScriptFromAgrs());
     serviceLocator->registerInstance<IScriptingService>(service);
+    service->prepareConsole();
 
     return true;
 }
