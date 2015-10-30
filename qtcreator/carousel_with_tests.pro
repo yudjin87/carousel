@@ -9,5 +9,6 @@ CONFIG  += ordered
 
 SUBDIRS += src \
            test \
+           demos \
 
 include(doc/doc.pri)
