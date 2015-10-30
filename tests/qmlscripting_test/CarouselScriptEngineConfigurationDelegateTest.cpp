@@ -126,6 +126,7 @@ void CarouselScriptEngineConfigurationDelegateTest::explore_shouldPrintAllGlobal
     QVERIFY(output.messages.contains("explore()"));
     QVERIFY(output.messages.contains("NaN"));
     QVERIFY(!output.messages.contains("__explore__ (instance)"));
+    QVERIFY(!output.messages.contains("__explore__"));
 }
 
 void CarouselScriptEngineConfigurationDelegateTest::explore_shouldPrintVariableMembers()

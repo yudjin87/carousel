@@ -57,6 +57,12 @@ void ExploreJsObject::explore()
     while (it.hasNext())
     {
         it.next();
+        if (it.name().startsWith("__"))
+        {
+            // internal Carousel's staff
+            continue;
+        }
+
         QJSValue val = it.value();
         if (val.isCallable())
         {
@@ -64,7 +70,7 @@ void ExploreJsObject::explore()
             continue;
         }
 
-        if (val.isObject() && !it.name().startsWith("__"))
+        if (val.isObject())
         {
             m_outputHandler.print(it.name() + " (instance)");
             continue;
