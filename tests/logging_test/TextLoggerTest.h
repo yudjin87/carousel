@@ -9,5 +9,6 @@ public:
 
 private Q_SLOTS:
     void writeToStream();
+    void writeToErrorStream();
 };
 

@@ -98,8 +98,9 @@ IComponentProvider *BootloaderBase::createComponentProvider()
 
 ILoggerEngineCreator *BootloaderBase::createLoggerEngine()
 {
-    static QTextStream text(stdout);
-    return new TextLogger(text);
+    static QTextStream output(stdout);
+    static QTextStream errors(stderr);
+    return new TextLogger(output, errors);
 }
 
 IServiceLocator *BootloaderBase::createServiceLocator()

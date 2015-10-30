@@ -36,17 +36,25 @@
 static QMutex mutex;
 
 TextLogger::TextLogger(QTextStream &output)
-    : ILoggerEngine()
-    , ILoggerEngineCreator()
-    , m_outputStream(output)
-    , m_name("Root")
+    : TextLogger(output, output, "Root")
+{
+}
+
+TextLogger::TextLogger(QTextStream &output, QTextStream &errorOutput)
+    : TextLogger(output, errorOutput, "Root")
 {
 }
 
 TextLogger::TextLogger(QTextStream &output, const QString &name)
+    : TextLogger(output, output, name)
+{
+}
+
+TextLogger::TextLogger(QTextStream &output, QTextStream &errorOutput, const QString &name)
     : ILoggerEngine()
     , ILoggerEngineCreator()
     , m_outputStream(output)
+    , m_errorStream(errorOutput)
     , m_name(name)
 {
 }
@@ -54,13 +62,13 @@ TextLogger::TextLogger(QTextStream &output, const QString &name)
 ILoggerEngine *TextLogger::getLogger(const QString &name)
 {
     QMutexLocker locker(&mutex);
-    return new TextLogger(m_outputStream, name);
+    return new TextLogger(m_outputStream, m_errorStream, name);
 }
 
 void TextLogger::d(const QString &message)
 {
 #ifdef QT_DEBUG
-    log(message, "Debug");
+    log(m_outputStream, message, "DBG");
 #else
     Q_UNUSED(message)
 #endif
@@ -68,30 +76,30 @@ void TextLogger::d(const QString &message)
 
 void TextLogger::e(const QString &message)
 {
-    log(message, "Error");
+    log(m_errorStream, message, "ERR");
 }
 
 void TextLogger::f(const QString &message)
 {
-    log(message, "Fatal");
+    log(m_errorStream, message, "FTL");
 }
 
 void TextLogger::i(const QString &message)
 {
-    log(message, "Info");
+    log(m_outputStream, message, "INF");
 }
 
 void TextLogger::t(const QString &message)
 {
-    log(message, "Trace");
+    log(m_outputStream, message, "TRC");
 }
 
 void TextLogger::w(const QString &message)
 {
-    log(message, "Warning");
+    log(m_errorStream, message, "WRN");
 }
 
-void TextLogger::log(const QString &message, const QString &category)
+void TextLogger::log(QTextStream& stream, const QString &message, const QString &category)
 {
     static const QString messagePattern = "[%1]%2[%3] %4: %5";
     static const QString dateFormat = "dd MMM, hh:mm:ss.zzz";
@@ -104,7 +112,7 @@ void TextLogger::log(const QString &message, const QString &category)
             .arg(message);
 
     QMutexLocker locker(&mutex);
-    m_outputStream << formatedMessage << endl;
+    stream << formatedMessage << endl;
 }
 
 const QString &TextLogger::name() const

@@ -77,11 +77,29 @@ public:
 
     /*!
      * @details
+     * @constructor{TextLogger} with the specified output stream for the logging,
+     *   as well, as stream for errors and warnings.
+     *
+     *   Sets logger name to @a Root.
+     */
+    TextLogger(QTextStream &output, QTextStream &errorOutput);
+
+    /*!
+     * @details
      * @constructor{TextLogger} with the specified name and output stream for the logging.
      *
      *   The name will append in the log message.
      */
     TextLogger(QTextStream &output, const QString &name);
+
+    /*!
+     * @details
+     * @constructor{TextLogger} with the specified name and output stream for the loggin,
+     *   as well, as stream for errors and warnings.
+     *
+     *   The name will append in the log message.
+     */
+    TextLogger(QTextStream &output, QTextStream &errorOutput, const QString &name);
 
     /*!
      * @details
@@ -127,7 +145,7 @@ public:
     void w(const QString &message) override;
 
 protected:
-    virtual void log(const QString &message, const QString &category);
+    virtual void log(QTextStream& stream, const QString &message, const QString &category);
 
     /*!
      * @details
@@ -141,6 +159,12 @@ protected:
      *   The specified output stream for the logging.
      */
     QTextStream &m_outputStream;
+
+    /*!
+     * @details
+     *   The specified output stream for the errors and warnings.
+     */
+    QTextStream &m_errorStream;
 
 private:
     QString m_name;
