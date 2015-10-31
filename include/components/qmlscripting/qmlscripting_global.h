@@ -30,9 +30,9 @@
 #if defined(STATIC_BUILD)
 #   define QML_SCRIPTING_API
 #else
-#   if defined(ORG_CAROUSEL_QML_SCRIPTING_LIBRARY)
+#   if defined(ORG_CAROUSEL_QMLSCRIPTING_LIBRARY)
 #       define QML_SCRIPTING_API Q_DECL_EXPORT
 #   else
 #       define QML_SCRIPTING_API Q_DECL_IMPORT
-#   endif //#if defined(ORG_CAROUSEL_QML_SCRIPTING_LIBRARY)
+#   endif //#if defined(ORG_CAROUSEL_QMLSCRIPTING_LIBRARY)
 #endif

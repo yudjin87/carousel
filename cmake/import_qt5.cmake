@@ -17,9 +17,9 @@
 set(__LIBRARIES_BASENAME
     Core
     Gui
-    Script
     Test
     Widgets
+    Qml
     Xml)
 
 ########################################################################################

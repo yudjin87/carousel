@@ -13,11 +13,11 @@ file(GLOB __HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.h)
 
 ######################################################################
 # Sources: Fakes
-file(GLOB __SOURCES_FAKES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} fakes/[^.]*.cpp)	
+file(GLOB __SOURCES_FAKES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} fakes/[^.]*.cpp)
 
 ######################################################################
 # Headers: Fakes
-file(GLOB __HEADERS_FAKES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} fakes/[^.]*.h)	
+file(GLOB __HEADERS_FAKES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} fakes/[^.]*.h)
 
 ######################################################################
 # Test scripts
@@ -49,7 +49,7 @@ target_link_libraries(${CRSL_PROJECT_NAME} org.carousel.QmlScripting Carousel)
 
 ###############################################################################
 # Qt dependencies
-qt5_use_modules(${CRSL_PROJECT_NAME} Test)
+qt5_use_modules(${CRSL_PROJECT_NAME} Test Qml)
 
 ###############################################################################
 # Copy scripts to the output subdirectory "scripts"

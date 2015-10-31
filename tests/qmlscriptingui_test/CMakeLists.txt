@@ -35,7 +35,7 @@ target_link_libraries(${CRSL_PROJECT_NAME} org.carousel.QmlScriptingUI Carousel)
 
 ###############################################################################
 # Qt dependencies
-qt5_use_modules(${CRSL_PROJECT_NAME} Test)
+qt5_use_modules(${CRSL_PROJECT_NAME} Test Qml)
 
 ###############################################################################
 # Copy scripts to the output subdirectory "scripts"
