@@ -1,5 +1,5 @@
 ###############################################################################
-# This module contains a couple of subroutines such as determining 
+# This module contains a couple of subroutines such as determining
 # target platform bits, output directories setting and other.
 # This module does not export any variables to the parent scope.
 
@@ -80,7 +80,7 @@ function(crsl_get_compiler __RESULT)
 endfunction(crsl_get_compiler)
 
 ###############################################################################
-# Forms and sets up default pathes for the runtime binaries and 
+# Forms and sets up default pathes for the runtime binaries and
 # libraries outputs.
 # This function set up as default CMAKE_<TYPE>_OUTPUT_DIRECTORY'es
 # variables and configuration-dependent variables for the MSVC
@@ -97,7 +97,7 @@ macro(crsl_use_default_project_output_path __TARGET_NAME __ROOT __COMPILER __BIT
   set_target_properties(${__TARGET_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${__OUTPUT_DIR})
   set_target_properties(${__TARGET_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${__LIBRARIES_DIR})
   set_target_properties(${__TARGET_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${__OUTPUT_DIR})
-	
+
   # For Visual Studio we need to specify output pathes for all
   # configurations. CMake expects that thise variables will be in
   # upper case.
@@ -109,7 +109,7 @@ macro(crsl_use_default_project_output_path __TARGET_NAME __ROOT __COMPILER __BIT
     set_target_properties(${__TARGET_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_${CONF} ${__MS_VC_OUTPUT_DIR})
     set_target_properties(${__TARGET_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY_${CONF} ${__MS_VC_LIBRARIES_DIR})
     set_target_properties(${__TARGET_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_${CONF} ${__MS_VC_OUTPUT_DIR})
-  endforeach(CONF)	
+  endforeach(CONF)
 endmacro(crsl_use_default_project_output_path)
 
 ########################################################################################
@@ -145,7 +145,7 @@ function(crsl_copy_extra_files __TARGET __FILES __DIRECTORY)
   foreach(__FILE ${__FILES})
     set(__FILE_NAME "")
     set(__ABS_NAME "")
-    get_filename_component(__FILE_NAME ${__FILE} NAME)    
+    get_filename_component(__FILE_NAME ${__FILE} NAME)
     get_filename_component(__ABS_NAME ${__FILE} ABSOLUTE)
     add_custom_command(
       TARGET ${__TARGET}
@@ -166,8 +166,9 @@ function(deploy_qt __TARGET)
       add_custom_command(
         TARGET ${__TARGET}
         POST_BUILD
-        COMMAND "${__QT_ROOT_DIR}/bin/windeployqt.exe" "$<TARGET_FILE:${__TARGET}>"
-        COMMENT "${__QT_ROOT_DIR}/bin/windeployqt.exe" "$<TARGET_FILE:${__TARGET}>"
+        COMMAND "windeployqt.exe" "$<TARGET_FILE:${__TARGET}>"
+        COMMENT "Copying Qt libraries for ${__TARGET} using windeployqt.exe"
+        WORKING_DIRECTORY "${__QT_ROOT_DIR}/bin/"
       )
   endif(MSVC)
 

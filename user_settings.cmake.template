@@ -16,7 +16,3 @@
 # set(QT_ROOT_LOCATION_GNU-X64_DEBUG "~/devel/qt/qt-debug-5.5.0")
 # set(QT_ROOT_LOCATION_GNU-X64_RELEASE "~/devel/qt/qt-release-5.5.0")
 # set(QT_ROOT_LOCATION_CLANG-X64 "~/devel/Qt/5.0.1/Output/CLANG-x64")
-
-#------------------------------------------------------------------------------
-# Copy Qt libraries during install (usefull for Windows, to run unit tests)
-# set(QT_COPY_LIBRARIES TRUE)
