@@ -50,10 +50,10 @@ macx:BUILD_CONFIG=clang
 unix:BUILD_CONFIG=gnu
 unix:android:BUILD_CONFIG=android
 
-contains(QMAKE_HOST.arch, x86_64) {
-    BUILD_CONFIG=$${BUILD_CONFIG}-x64
-} else {
+contains(QT_ARCH, i386) {
     BUILD_CONFIG=$${BUILD_CONFIG}-x32
+} else {
+    BUILD_CONFIG=$${BUILD_CONFIG}-x64
 }
 
 CONFIG(release, debug|release) {
