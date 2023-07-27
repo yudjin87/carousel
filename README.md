@@ -25,9 +25,3 @@ gcc-4.7.2 x32/x64 </li>
 <li>
 Clang-4.2 x64 (MacOS 10.7) </li>
 </ol>
-
-Feedback
-----------
-Feel free to contact me for any questions or propositions!
-Yevhen Chuhui (yevhen.chuhui@gmail.com)
-
